@@ -7,10 +7,11 @@ import {
 import {Color} from '../assets/Color';
 const Button = ({text, onclick, width, height}) => {
   return (
-    <View
-      style={styles.container}>
-      <TouchableOpacity onPress={onclick} style={[styles.button, { height: hp(height)  }]}>
-        <Text style={{color: Color.btnTextColor, }}>{text}</Text>
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={onclick}
+        style={[styles.button, {height: hp(height), width: wp(width)}]}>
+        <Text style={{color: Color.btnTextColor}}>{text}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -23,10 +24,11 @@ const styles = StyleSheet.create({
     // width: wp(``),
   },
   button: {
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Color.primary,
     borderRadius: 30,
-    paddingVertical: hp('2%'),
+    // paddingVertical: hp('2%'),
   },
 });
 
