@@ -9,7 +9,7 @@ import Button from './Button';
 import Counter from './Counter';
 import Label from './Label';
 
-const  ProductCard = ({data}) => {
+const ProductCard = ({data, navigation}) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(0);
   const onIncrement = () => {
@@ -28,6 +28,7 @@ const  ProductCard = ({data}) => {
       <View style={styles.productCard}>
         <>
           <Label discount={50} />
+
           <Image
             style={styles.imgCard}
             source={{
@@ -40,7 +41,11 @@ const  ProductCard = ({data}) => {
               width: wp('56%'),
               // backgroundColor:"yellow"
             }}>
-            <Text style={styles.heading}>{data.name}</Text>
+            <Text
+              onPress={() => navigation.navigate('Product Detail')}
+              style={styles.heading}>
+              {data.name}
+            </Text>
             <Text>
               {data.description.length > 30
                 ? data.description.substring(0, 30 - 3) + '.....'
@@ -79,7 +84,7 @@ const  ProductCard = ({data}) => {
                   addToCart={onIncrement}
                 />
               ) : (
-                <Button height="5%"  text="Add To Cart" onclick={onAddToCart} />
+                <Button height="5%" width="20%" text="Add To Cart" onclick={onAddToCart} />
               )}
             </View>
           </View>
@@ -88,6 +93,8 @@ const  ProductCard = ({data}) => {
     </View>
   );
 };
+
+//react-native-swiper
 
 const styles = StyleSheet.create({
   productCard: {
@@ -99,6 +106,8 @@ const styles = StyleSheet.create({
     elevation: 5,
     paddingVertical: 10,
     borderRadius: 20,
+    borderColor:Color.primary,
+    borderWidth:0.5
   },
   imgCard: {
     marginHorizontal: wp('3%'),

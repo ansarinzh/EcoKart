@@ -1,14 +1,19 @@
 import React from 'react';
 import CartItem from './src/Page/CartItem';
+import {NavigationContainer} from '@react-navigation/native';
+import MainNavigator from './src/Navigation/Main';
 
 import Home from './src/Page/Home';
+import Login from './src/Page/Login';
+import ProductDetails from './src/Page/ProductDetails';
+import Header from './src/Component/Header';
 
 const App = () => {
   return (
-    <>
-      <CartItem />
-      {/* <Home /> */}
-    </>
+    <NavigationContainer>
+      <Header />
+      <MainNavigator />
+    </NavigationContainer>
   );
 };
 
