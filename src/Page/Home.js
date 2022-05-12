@@ -15,27 +15,42 @@ const Home = props => {
   return (
     <View style={{backgroundColor: Color.btnTextColor}}>
       <SearchProduct />
-      <View>
-        <Banner />
-      </View>
-      <View style={{marginVertical: wp('3%')}}>
-        <FlatList
-          data={[1, 2, 3, 4]}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          renderItem={() => <Category />}
-        />
-      </View>
+      <ScrollView>
+        <View>
+          <Banner />
+        </View>
 
-      {/* <View>
+        <View style={{padding: 10}}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: '500',
+              marginBottom: 15,
+              marginHorizontal: 5,
+            }}>
+            Categoty
+          </Text>
+          <FlatList
+            data={[1, 2, 3, 4]}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            renderItem={() => <Category />}
+          />
+        </View>
+
+        {/* <View>
         <Text style={{fontSize: 20, fontWeight: '700'}}>Popular</Text>
       </View> */}
-      <FlatList
-        data={products}
-        renderItem={data => (
-          <ProductCard navigation={props.navigation} data={data.item} />
-        )}
-      />
+        <View style={{padding: 10}}>
+          <Text style={{fontSize: 20, fontWeight: '700'}}>Popular</Text>
+          <FlatList
+            data={products}
+            renderItem={data => (
+              <ProductCard navigation={props.navigation} data={data.item} />
+            )}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 };
