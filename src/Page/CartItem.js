@@ -38,7 +38,7 @@ const CartItem = () => {
           style={{
             paddingVertical: 10,
           }}>
-          <Button text="Checkout" width="100%" height="7%" />
+          <Button text="Checkout" width="95%" height="7%" />
         </View>
       </View>
     </>

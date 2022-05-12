@@ -14,7 +14,7 @@ const Main = () => {
       // initialRouteName="Home"
       tabBarOptions={{
         keyboardHidesTabBar: true,
-        showLabel: false,
+        showLabel: true,
         activeTintColor: '#e91e63',
       }}>
       <Tab.Screen

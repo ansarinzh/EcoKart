@@ -16,8 +16,12 @@ function MyStack() {
         name="Home"
         component={ProductContainer}
       />
-      <Stack.Screen name="Product Detail" component={SingleProduct} />
-      <Stack.Screen name="cart" component={CartNavigator} />
+      <Stack.Screen
+        name="Product Detail"
+        component={SingleProduct}
+        options={{ headerShown:false }}
+      />
+      <Stack.Screen name="cart" component={CartNavigator} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, FlatList} from 'react-native';
+import {View, Text, ScrollView, FlatList, RefreshControl} from 'react-native';
 import {Color} from '../assets/Color';
 import Banner from '../Component/Banner';
 import Category from '../Component/Category';
@@ -12,10 +12,21 @@ import {
 } from 'react-native-responsive-screen';
 const Home = props => {
   // console.log('navi', props.navigation);
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = () => {
+    setRefreshing(true);
+     new Promise(resolve => setTimeout(resolve, 2000)).then(() =>
+      setRefreshing(false),
+    );
+  };
   return (
     <View style={{backgroundColor: Color.btnTextColor}}>
       <SearchProduct />
-      <ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <View>
           <Banner />
         </View>
@@ -28,7 +39,7 @@ const Home = props => {
               marginBottom: 15,
               marginHorizontal: 5,
             }}>
-            Categoty
+            Category
           </Text>
           <FlatList
             data={[1, 2, 3, 4]}
