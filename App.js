@@ -18,3 +18,7 @@ const App = () => {
 };
 
 export default App;
+//font ka code nikal de pura
+// kaise nikale delete kar de na saab
+
+// android k under se nahi 

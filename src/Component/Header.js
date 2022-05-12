@@ -19,14 +19,12 @@ const Header = () => {
           style={{
             fontSize: 15,
             fontWeight: '600',
-            fontFamily: 'Rubik-VariableFont_wght',
+
             // ,
           }}>
           Hey Buddy
         </Text>
-        <Text style={{fontFamily: 'Rubik-Italic-VariableFont_wght'}}>
-          Hey Buddy
-        </Text>
+        <Text style={{}}>Hey Buddy</Text>
       </View>
       <View>
         <Icon name="shopping-cart" color={Color.primary} size={30} />
