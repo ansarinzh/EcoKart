@@ -20,8 +20,9 @@ const Category = () => {
         justifyContent: 'center',
         borderRadius: 40,
         alignSelf: 'flex-start',
-        marginHorizontal: 10,
+        marginHorizontal: 5,
         paddingHorizontal: 3,
+        paddingVertical:3,
       }}>
       <Image
         style={{
@@ -35,7 +36,7 @@ const Category = () => {
           uri: 'https://picsum.photos/id/237/536/354',
         }}
       />
-      <Text style={{marginHorizontal: 4}}>Category</Text>
+      <Text style={{marginHorizontal: 4, color: Color.primaryText}}>Category</Text>
     </View>
   );
 };

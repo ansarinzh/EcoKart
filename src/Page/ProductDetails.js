@@ -159,7 +159,7 @@ const ProductDetails = props => {
       <View style={{marginVertical: 15}}>
         <Button
           text="ADD TO CART"
-          width="100%"
+          width="95%"
           height="7%"
           onclick={() => props.navigation.navigate('cart')}
         />

@@ -20,8 +20,7 @@ const ProductCard = ({data, navigation}) => {
     setShow(true);
   };
   const removeAddToCart = () => {
-    count == 0 ? setShow(false) : null;
-    setCount(prevCount => prevCount - 1);
+    count == 0 ? setShow(false) : setCount(prevCount => prevCount - 1);
   };
   return (
     <View style={styles.productCard}>
@@ -42,7 +41,9 @@ const ProductCard = ({data, navigation}) => {
           <Text
             onPress={() => navigation.navigate('Product Detail')}
             style={styles.heading}>
-            {data.name}
+            {data.name.length > 15
+              ? data.name.substring(0, 10 - 3) + '.....'
+              : data.name}
           </Text>
           <Text style={{width: 130}}>
             {data.description.length > 15
@@ -68,7 +69,7 @@ const ProductCard = ({data, navigation}) => {
         style={{
           display: 'flex',
           justifyContent: 'flex-end',
-          marginRight: 20,
+          marginRight: 15,
         }}>
         {show ? (
           <Counter
@@ -93,7 +94,7 @@ const ProductCard = ({data, navigation}) => {
 
 const styles = StyleSheet.create({
   productCard: {
-    // backgroundColor: 'red',
+    backgroundColor: '#fff',
     height: hp('16%'),
     display: 'flex',
     flexDirection: 'row',
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   imgCard: {
-    marginHorizontal: wp('3%'),
+    marginHorizontal: wp('2%'),
     width: wp('20%'),
     height: hp('13%'),
     borderRadius: 20,

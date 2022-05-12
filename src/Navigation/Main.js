@@ -7,6 +7,7 @@ const Tab = createBottomTabNavigator();
 //stack
 import HomeNavigator from './Homenavigator';
 import CartNavigator from './Cartnavigator';
+import UserNavigator from './Usernavigator';
 
 const Main = () => {
   return (
@@ -14,7 +15,7 @@ const Main = () => {
       // initialRouteName="Home"
       tabBarOptions={{
         keyboardHidesTabBar: true,
-        showLabel: false,
+        showLabel: true,
         activeTintColor: '#e91e63',
       }}>
       <Tab.Screen
@@ -46,8 +47,9 @@ const Main = () => {
 
       <Tab.Screen
         name="User"
-        component={HomeNavigator}
+        component={UserNavigator}
         options={{
+          headerShown: false,
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={30} />,
         }}
       />

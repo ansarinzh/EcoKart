@@ -16,16 +16,16 @@ const Label = ({discount}) => {
 
 const styles = StyleSheet.create({
   label: {
-    width: wp('17%'),
+    width: wp('15%'),
     zIndex: 99,
     color: '#fff',
     backgroundColor: Color.secondary,
     position: 'absolute',
-    top: 10,
-    left: 11,
-    paddingVertical: 8,
+    top: 0,
+    left: 8,
+    paddingVertical: 4,
     borderTopLeftRadius: 20,
-    height: hp('4%'),
+    height: hp('3%'),
     display: 'flex',
     alignItems: 'center',
   },
