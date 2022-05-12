@@ -12,12 +12,11 @@ const SearchProduct = ({onFocus, onChangeText, focus}) => {
     <>
       <View
         style={{
-          backgroundColor: 'white',
+          backgroundColor: 'gray',
           flexDirection: 'row',
           borderRadius: 15,
           paddingVertical: hp('.3%'),
-
-          width: '90%',
+          width: '92%',
           margin: hp('1.5%'),
         }}>
         <Icon
@@ -30,8 +29,8 @@ const SearchProduct = ({onFocus, onChangeText, focus}) => {
           placeholder="Type here..."
           placeholderTextColor="black"
           style={{fontSize: 18, padding: hp('1.3%'), width: '80%'}}
-        //   onFocus={onFocus}
-        //   onChangeText={onChangeText}
+          //   onFocus={onFocus}
+          //   onChangeText={onChangeText}
         />
         {focus === true ? (
           <View style={{display: 'flex', justifyContent: 'center'}}>
