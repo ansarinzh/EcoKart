@@ -9,7 +9,7 @@ import Button from './Button';
 import Counter from './Counter';
 import Label from './Label';
 
-const  ProductCard = ({data}) => {
+const ProductCard = ({data, navigation}) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(0);
   const onIncrement = () => {
@@ -20,89 +20,96 @@ const  ProductCard = ({data}) => {
     setShow(true);
   };
   const removeAddToCart = () => {
-    count == 0 ? setShow(false) : null;
-    setCount(prevCount => prevCount - 1);
+    count == 0 ? setShow(false) : setCount(prevCount => prevCount - 1);
   };
   return (
-    <View>
-      <View style={styles.productCard}>
-        <>
-          <Label discount={50} />
-          <Image
-            style={styles.imgCard}
-            source={{
-              uri: data.image,
-            }}
-          />
+    <View style={styles.productCard}>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}>
+        <Label discount={50} />
+        <Image
+          style={styles.imgCard}
+          source={{
+            uri: data.image,
+          }}
+        />
 
-          <View
+        <View style={{}}>
+          <Text
+            onPress={() => navigation.navigate('Product Detail')}
+            style={styles.heading}>
+            {data.name.length > 15
+              ? data.name.substring(0, 10 - 3) + '.....'
+              : data.name}
+          </Text>
+          <Text style={{width: 130}}>
+            {data.description.length > 15
+              ? data.description.substring(0, 15 - 3) + '.....'
+              : data.description}
+          </Text>
+
+          <Text style={{textDecorationLine: 'line-through', marginVertical: 5}}>
+            `MRP ${data.price}`
+          </Text>
+
+          <Text
             style={{
-              width: wp('56%'),
-              // backgroundColor:"yellow"
+              fontSize: 15,
+              alignSelf: 'flex-start',
+              color: Color.secondary,
             }}>
-            <Text style={styles.heading}>{data.name}</Text>
-            <Text>
-              {data.description.length > 30
-                ? data.description.substring(0, 30 - 3) + '.....'
-                : data.description}
-            </Text>
-
-            <Text
-              style={{textDecorationLine: 'line-through', marginVertical: 5}}>
-              `MRP ${data.price}`
-            </Text>
-
-            <Text
-              style={{
-                fontSize: 15,
-                alignSelf: 'flex-start',
-                color: Color.secondary,
-
-                alignSelf: 'flex-start',
-                // backgroundColor: 'red',
-              }}>
-              {data.price} / {data.unit}
-            </Text>
-
-            {/* <Text style={{ ali}}></Text> */}
-            <View
-              style={{
-                display: 'flex',
-                // alignItems: 'flex-end',
-                // backgroundColor: 'blue',
-                alignSelf: 'flex-end',
-              }}>
-              {show ? (
-                <Counter
-                  removeFromCart={removeAddToCart}
-                  count={count}
-                  addToCart={onIncrement}
-                />
-              ) : (
-                <Button height="5%"  text="Add To Cart" onclick={onAddToCart} />
-              )}
-            </View>
-          </View>
-        </>
+            {data.price} / {data.unit}
+          </Text>
+        </View>
+      </View>
+      <View
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          marginRight: 15,
+        }}>
+        {show ? (
+          <Counter
+            removeFromCart={removeAddToCart}
+            count={count}
+            addToCart={onIncrement}
+          />
+        ) : (
+          <Button
+            height="5%"
+            width="25%"
+            text="Add To Cart"
+            onclick={onAddToCart}
+          />
+        )}
       </View>
     </View>
   );
 };
 
+//react-native-swiper
+
 const styles = StyleSheet.create({
   productCard: {
     backgroundColor: '#fff',
-    height: hp('21%'),
+    height: hp('16%'),
     display: 'flex',
     flexDirection: 'row',
     margin: 10,
     elevation: 5,
     paddingVertical: 10,
     borderRadius: 20,
+    borderColor: Color.primary,
+    // borderWidth: 0.5,
+    justifyContent: 'space-between',
   },
   imgCard: {
-    marginHorizontal: wp('3%'),
-    width: hp('15%'),
+    marginHorizontal: wp('2%'),
+    width: wp('20%'),
+    height: hp('13%'),
     borderRadius: 20,
     resizeMode: 'contain',
   },
@@ -115,4 +122,3 @@ const styles = StyleSheet.create({
   },
 });
 export default ProductCard;
-// price  , mrp , unit ,

@@ -2,9 +2,10 @@ import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
 import Button from '../Component/Button';
 import CartCard from '../Component/CartCard';
+import Header from '../Component/Header';
 import cart from '../products.json';
 
-const CartItem = () => {
+const CartItem = props => {
   return (
     <>
       <View
@@ -12,25 +13,22 @@ const CartItem = () => {
           //   backgroundColor: 'green',
           height: 530,
         }}>
+        <Header navigation={props.navigation} />
         <FlatList
           data={cart}
           renderItem={data => <CartCard data={data.item} />}
         />
       </View>
-      <View
-        style={styles.coreView}>
-        <View
-          style={styles.card}>
+      <View style={styles.coreView}>
+        <View style={styles.card}>
           <Text>Subtotal</Text>
           <Text>500</Text>
         </View>
-        <View
-          style={styles.card}>
+        <View style={styles.card}>
           <Text>Subtotal</Text>
           <Text>500</Text>
         </View>
-        <View
-          style={styles.card}>
+        <View style={styles.card}>
           <Text>Subtotal</Text>
           <Text>500</Text>
         </View>
@@ -38,7 +36,7 @@ const CartItem = () => {
           style={{
             paddingVertical: 10,
           }}>
-          <Button text="Checkout" width="100%" height="7%" />
+          <Button text="Checkout" width="95%" height="7%" />
         </View>
       </View>
     </>
@@ -46,7 +44,7 @@ const CartItem = () => {
 };
 
 const styles = StyleSheet.create({
-  coreView:{
+  coreView: {
     backgroundColor: '#FFF',
     position: 'absolute',
     bottom: 0,
