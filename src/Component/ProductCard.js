@@ -8,19 +8,41 @@ import {Color} from '../assets/Color';
 import Button from './Button';
 import Counter from './Counter';
 import Label from './Label';
+import {useSelector, useDispatch} from 'react-redux';
+import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
 
 const ProductCard = ({data, navigation}) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(0);
-  const onIncrement = () => {
-    setCount(prevCount => prevCount + 1);
+
+  const dispatch = useDispatch();
+
+  const qty = useSelector(state => state.CartReducer);
+
+  // console.log('qty', qty);
+  // console.log('data', data);
+  // console.log(
+  //   '****************',
+  //   qty.carts.filter(item => item._id === data._id).length,
+  // );
+  let quantity;
+  qty.carts.map(q => {
+    if (q._id === data._id) {
+      quantity = q.qty;
+    }
+  });
+  const onIncrement = data => {
+    dispatch(AddToCart(data));
   };
 
-  const onAddToCart = () => {
-    setShow(true);
+  const onAddToCart = data => {
+    // console.log('item', data);
+    dispatch(AddToCart(data));
+    // setShow(true);
   };
-  const removeAddToCart = () => {
-    count == 0 ? setShow(false) : setCount(prevCount => prevCount - 1);
+  const removeAddToCart = data => {
+      dispatch(RemoveQtyItem(data));
+    // count == 0 ? setShow(false) : setCount(prevCount => prevCount - 1);
   };
   return (
     <View style={styles.productCard}>
@@ -71,20 +93,30 @@ const ProductCard = ({data, navigation}) => {
           justifyContent: 'flex-end',
           marginRight: 15,
         }}>
-        {show ? (
+        {quantity >= 1 ? (
+          // qty.carts.filter(item => item._id === data._id).length >= 1
           <Counter
-            removeFromCart={removeAddToCart}
-            count={count}
-            addToCart={onIncrement}
+            removeFromCart={() => removeAddToCart(data)}
+            count={quantity}
+            addToCart={() => onIncrement(data)}
           />
         ) : (
           <Button
             height="5%"
             width="25%"
             text="Add To Cart"
-            onclick={onAddToCart}
+            onclick={() => onAddToCart(data)}
           />
         )}
+
+        {/* {quantity === 0 && (
+          <Button
+            height="5%"
+            width="25%"
+            text="Add To Cart"
+            onclick={() => onAddToCart(data)}
+          />
+        )} */}
       </View>
     </View>
   );

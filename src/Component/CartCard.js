@@ -8,20 +8,38 @@ import {Color} from '../assets/Color';
 import Button from './Button';
 import Counter from './Counter';
 import Label from './Label';
+import { useSelector, useDispatch } from 'react-redux'; 
+import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
+
 
 const CartCard = ({data}) => {
   const [show, setShow] = useState(false);
   const [count, setCount] = useState(0);
-  const onIncrement = () => {
-    setCount(prevCount => prevCount + 1);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.CartReducer);
+
+
+  let quantity;
+  cartItems.carts.map(q => {
+    if (q._id === data._id) {
+      quantity = q.qty;
+    }
+  });
+
+
+  const onIncrement = (data) => {
+    dispatch(AddToCart(data));
+    // setCount(prevCount => prevCount + 1);
   };
 
   const onAddToCart = () => {
+    // dispatch()
     setShow(true);
   };
-  const removeAddToCart = () => {
-    count == 0 ? setShow(false) : null;
-    setCount(prevCount => prevCount - 1);
+  const removeAddToCart = (data) => {
+    dispatch(RemoveQtyItem(data));
+    // count == 0 ? setShow(false) : null;
+    // setCount(prevCount => prevCount - 1);
   };
   return (
     <View>
@@ -46,7 +64,7 @@ const CartCard = ({data}) => {
 
               <Text
                 style={{textDecorationLine: 'line-through', marginVertical: 2}}>
-                `MRP ${data.price}`
+                MRP {data.price}
               </Text>
 
               <Text
@@ -75,9 +93,9 @@ const CartCard = ({data}) => {
               marginHorizontal: 20,
             }}>
             <Counter
-              removeFromCart={removeAddToCart}
-              count={count}
-              addToCart={onIncrement}
+              removeFromCart={()=>removeAddToCart(data)}
+              count={quantity}
+              addToCart={()=> onIncrement(data)}
             />
           </View>
         </>
@@ -90,7 +108,7 @@ const styles = StyleSheet.create({
   productCard: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    height: hp('13%'),
+    height: hp('10%'),
     display: 'flex',
     flexDirection: 'row',
     margin: 10,
