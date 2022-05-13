@@ -11,12 +11,16 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import Header from '../Component/Header';
+import categories from '../categories.json';
 import SearchedProductList from '../Component/SearchedProductList';
 const Home = props => {
   const [focus, setFocus] = useState();
   const [productsFiltered, setProductsFiltered] = useState([]);
-
   const [refreshing, setRefreshing] = React.useState(false);
+  const [active, setActive] = useState();
+  const [initialState, setInitialState] = useState([]);
+  const [productsCtg, setProductsCtg] = useState([]);
+
   const onRefresh = () => {
     setRefreshing(true);
     new Promise(resolve => setTimeout(resolve, 2000)).then(() =>
@@ -38,6 +42,20 @@ const Home = props => {
     setFocus(false);
   };
 
+  // Categories
+  const changeCtg = ctg => {
+    console.log('ctg', ctg);
+    {
+      ctg === 'all'
+        ? [setProductsCtg(initialState), setActive(true)]
+        : [
+            setProductsCtg(
+              products.filter(i => i?.category?._id === ctg ?? []),
+              setActive(true),
+            ),
+          ];
+    }
+  };
   return (
     <View style={{backgroundColor: Color.btnTextColor}}>
       <Header name="Hey Buddy" description="Welcome to my app" />
@@ -73,11 +91,12 @@ const Home = props => {
               }}>
               Category
             </Text>
-            <FlatList
-              data={[1, 2, 3, 4]}
-              showsHorizontalScrollIndicator={false}
-              horizontal
-              renderItem={() => <Category />}
+            <Category
+              categories={categories}
+              categoryFilter={changeCtg}
+              productsCtg={productsCtg}
+              active={active}
+              setActive={setActive}
             />
           </View>
 
