@@ -6,6 +6,9 @@ import UserNavigator from './src/Navigation/Usernavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from './src/Component/Header';
 import Login from './src/Page/Login';
+import {Provider} from 'react-redux';
+
+import store from './src/Redux/store';
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -23,19 +26,17 @@ const App = () => {
     })();
   }, [user]);
   return (
-    <NavigationContainer>
-      {/* <Header /> */}
-      {user ? (
-        <>
-          {/* <Header /> */}
-          <MainNavigator />
-        </>
-      ) : (
-        <UserNavigator />
-      )}
-      {/* <UserNavigator /> */}
-      {/* <MainNavigator /> */}
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        {user ? (
+          <>
+            <MainNavigator />
+          </>
+        ) : (
+          <UserNavigator />
+        )}
+      </NavigationContainer>
+    </Provider>
   );
 };
 
