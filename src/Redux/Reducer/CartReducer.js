@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export const CartReducer = (state = initialState, action) => {
-  //   console.log('action', action.payload);
 
   switch (action.type) {
     // *************** To add item into the cart **************
@@ -28,7 +27,7 @@ export const CartReducer = (state = initialState, action) => {
 
     // ************ To remove item from cart ***************
     case REMOVE_FROM_CART:
-      const data = state.carts.filter(el => el.id !== action.payload);
+      const data = state.carts.filter(el => el._id !== action.payload);
       return {...state, carts: data};
 
     // ************ To remove quantity of product from cart page ************
@@ -36,12 +35,11 @@ export const CartReducer = (state = initialState, action) => {
       const qtyItemIndex = state.carts.findIndex(
         item => item._id === action.payload._id,
       );
-      if (state.carts[qtyItemIndex].qty >= 1) {
+      if (state.carts[qtyItemIndex].qty > 1) {
         const deleteItems = (state.carts[qtyItemIndex].qty -= 1);
-        console.log("deleteItems", deleteItems);
-        return {...state, carts: [...state.carts]};
+        return {...state,deleteItems, carts: [...state.carts]};
       } else if (state.carts[qtyItemIndex].qty == 1) {
-        const data = state.carts.filter(el => el.id !== action.payload);
+        const data = state.carts.filter(el => el._id !== action.payload._id);
         return {
           ...state,
           carts: data,

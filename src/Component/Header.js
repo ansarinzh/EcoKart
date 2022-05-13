@@ -9,7 +9,7 @@ import {useSelector} from 'react-redux';
 const Header = ({name, description, navigation}) => {
   const CartLength = useSelector(state => state.CartReducer);
 
-  // console.log('cartlength', CartLength.carts.length);
+  console.log('cartlength', CartLength);
 
   return (
     <View
@@ -63,7 +63,12 @@ const Header = ({name, description, navigation}) => {
       ) : null}
 
       <View style={{marginHorizontal: 10}}>
-        <Icon name="shopping-cart" color={Color.primary} size={30} />
+        <Icon
+          onPress={() => navigation.navigate('cart')}
+          name="shopping-cart"
+          color={Color.primary}
+          size={30}
+        />
       </View>
     </View>
   );

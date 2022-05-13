@@ -21,10 +21,10 @@ const ProductCard = ({data, navigation}) => {
 
   // console.log('qty', qty);
   // console.log('data', data);
-  console.log(
-    '****************',
-    qty.carts.filter(item => item._id === data._id).length,
-  );
+  // console.log(
+  //   '****************',
+  //   qty.carts.filter(item => item._id === data._id).length,
+  // );
   let quantity;
   qty.carts.map(q => {
     if (q._id === data._id) {
@@ -41,8 +41,7 @@ const ProductCard = ({data, navigation}) => {
     // setShow(true);
   };
   const removeAddToCart = data => {
-    dispatch(RemoveQtyItem(data));
-
+      dispatch(RemoveQtyItem(data));
     // count == 0 ? setShow(false) : setCount(prevCount => prevCount - 1);
   };
   return (

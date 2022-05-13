@@ -12,7 +12,7 @@ export const AddToCart = payload => {
 export const RemoveFromCart = id => {
   return {
     type: REMOVE_FROM_CART,
-    payload: id,
+    payload: id._id,
   };
 };
 

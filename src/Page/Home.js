@@ -40,7 +40,11 @@ const Home = props => {
 
   return (
     <View style={{backgroundColor: Color.btnTextColor}}>
-      <Header name="Hey Buddy" description="Welcome to my app" />
+      <Header
+        name="Hey Buddy"
+        description="Welcome to my app"
+        navigation={props.navigation}
+      />
       <SearchProduct
         onFocus={openList}
         onChangeText={text => searchProduct(text)}
