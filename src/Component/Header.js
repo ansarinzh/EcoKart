@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Color} from '../assets/Color';
-
-const Header = () => {
+import Iconleft from 'react-native-vector-icons/AntDesign';
+const Header = ({name, description, navigation}) => {
   return (
     <View
       style={{
@@ -14,18 +14,29 @@ const Header = () => {
         padding: 15,
         alignItems: 'center',
       }}>
-      <View>
-        <Text
-          style={{
-            fontSize: 18,
-            fontWeight: '600',
+      {navigation ? (
+        <>
+          <Iconleft
+            name="arrowleft"
+            size={30}
+            onPress={() => navigation.goBack()}
+          />
+        </>
+      ) : (
+        <View>
+          <Text
+            style={{
+              fontSize: 18,
+              fontWeight: '600',
 
-            // ,
-          }}>
-          Hey Buddy
-        </Text>
-        <Text style={{marginVertical: 4}}>Welcome to my app</Text>
-      </View>
+              // ,
+            }}>
+            {name}
+          </Text>
+          <Text style={{marginVertical: 4}}>{description}</Text>
+        </View>
+      )}
+
       <View
         style={{
           position: 'absolute',

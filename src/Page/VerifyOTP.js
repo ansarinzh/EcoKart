@@ -29,19 +29,23 @@ const VerifyOTP = props => {
   const otp3Ref = useRef('');
   const otp4Ref = useRef('');
 
-
-const setTokenAfterLogin = () =>{
-  console.log("ugik");
-  AsyncStorage.setItem('token' , "token");
-}
-
-
-
+  const setTokenAfterLogin = () => {
+    console.log('ugik');
+    AsyncStorage.setItem('token', 'token');
+  };
 
   return (
-    <View>
+    <>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{paddingVertical: 10, paddingHorizontal: 10}}>
+        <View
+          style={{
+            paddingVertical: 10,
+            paddingHorizontal: 10,
+            // backgroundColor: 'yellow',
+            display: 'flex',
+            flex: 1,
+            justifyContent: 'space-between',
+          }}>
           <View>
             <Image
               style={{
@@ -51,105 +55,112 @@ const setTokenAfterLogin = () =>{
               }}
               source={require('../assets/images/OTP-bro.png')}
             />
-          </View>
-          <View style={{marginVertical: 20}}>
-            <Text
-              style={{
-                alignSelf: 'center',
-                fontSize: 20,
-                fontWeight: '600',
-                marginVertical: 5,
-              }}>
-              OTP Verification
-            </Text>
-            <Text
-              style={{
-                alignSelf: 'center',
-                fontWeight: '600',
-                textAlign: 'center',
-                marginVertical: 5,
-              }}>
-              Enter the OTP sent to
-              <Text style={{fontWeight: '800', fontSize: 15}}>
-                +91-9963258741
+
+            <View style={{marginVertical: 20}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  fontSize: 20,
+                  fontWeight: '600',
+                  marginVertical: 5,
+                }}>
+                OTP Verification
               </Text>
-            </Text>
-          </View>
-          <View style={{ marginHorizontal:30 }}>
-            <Text>Enter OTP</Text>
-            <View
-              style={{
-                  marginVertical:10,
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent:"space-between"
-              }}>
-              <TextInput
+              <Text
                 style={{
-                  width: wp('15%'),
-                  borderColor: Color.primary,
-                  borderWidth: 1,
-                  borderRadius: 10,
+                  alignSelf: 'center',
+                  fontWeight: '600',
                   textAlign: 'center',
-                }}
-                ref={otp1Ref}
-                keyboardType="number-pad"
-                maxLength={1}
-                onChangeText={otp1 => {
-                  setOtp1(otp1);
-                  if (otp1 != '') {
-                    otp2Ref.current.focus();
-                  }
-                }}
-              />
-              <TextInput
+                  marginVertical: 5,
+                }}>
+                Enter the OTP sent to
+                <Text style={{fontWeight: '800', fontSize: 15}}>
+                  +91-9963258741
+                </Text>
+              </Text>
+            </View>
+
+            <View style={{marginHorizontal: 30}}>
+              <Text>Enter OTP</Text>
+              <View
                 style={{
-                  width: wp('15%'),
-                  borderRadius: 10,
-                  borderColor: Color.primary,
-                  borderWidth: 1,
-                  textAlign: 'center',
-                }}
-                ref={otp2Ref}
-                keyboardType="number-pad"
-                maxLength={1}
-                onChangeText={otp2 => {setOtp2(otp2)
+                  marginVertical: 10,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <TextInput
+                  style={{
+                    width: wp('15%'),
+                    borderColor: Color.primary,
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    textAlign: 'center',
+                  }}
+                  ref={otp1Ref}
+                  keyboardType="number-pad"
+                  maxLength={1}
+                  onChangeText={otp1 => {
+                    setOtp1(otp1);
+                    if (otp1 != '') {
+                      otp2Ref.current.focus();
+                    }
+                  }}
+                />
+                <TextInput
+                  style={{
+                    width: wp('15%'),
+                    borderRadius: 10,
+                    borderColor: Color.primary,
+                    borderWidth: 1,
+                    textAlign: 'center',
+                  }}
+                  ref={otp2Ref}
+                  keyboardType="number-pad"
+                  maxLength={1}
+                  onChangeText={otp2 => {
+                    setOtp2(otp2);
                     if (otp2 != '') {
-                        otp3Ref.current.focus();
-                      }}}
-              />
-              <TextInput
-                style={{
-                  width: wp('15%'),
-                  borderColor: Color.primary,
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  textAlign: 'center',
-                }}
-                ref={otp3Ref}
-                keyboardType="number-pad"
-                maxLength={1}
-                onChangeText={otp3 => {setOtp3(otp3)
+                      otp3Ref.current.focus();
+                    }
+                  }}
+                />
+                <TextInput
+                  style={{
+                    width: wp('15%'),
+                    borderColor: Color.primary,
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    textAlign: 'center',
+                  }}
+                  ref={otp3Ref}
+                  keyboardType="number-pad"
+                  maxLength={1}
+                  onChangeText={otp3 => {
+                    setOtp3(otp3);
                     if (otp3 != '') {
-                        otp4Ref.current.focus();
-                      }}}
-              />
-              <TextInput
-                style={{
-                  width: wp('15%'),
-                  borderColor: Color.primary,
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  textAlign: 'center',
-                }}
-                ref={otp4Ref}
-                keyboardType="number-pad"
-                maxLength={1}
-                onChangeText={otp4 => setOtp4(otp4)}
-              />
+                      otp4Ref.current.focus();
+                    }
+                  }}
+                />
+                <TextInput
+                  style={{
+                    width: wp('15%'),
+                    borderColor: Color.primary,
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    textAlign: 'center',
+                  }}
+                  ref={otp4Ref}
+                  keyboardType="number-pad"
+                  maxLength={1}
+                  onChangeText={otp4 => setOtp4(otp4)}
+                />
+              </View>
             </View>
           </View>
-          <View style={{marginVertical: 15, alignSelf:"center"}}>
+
+          <View style={{marginVertical: 15, alignSelf: 'center'}}>
             <Button
               text="Verify OTP"
               height="7%"
@@ -159,7 +170,7 @@ const setTokenAfterLogin = () =>{
           </View>
         </View>
       </TouchableWithoutFeedback>
-    </View>
+    </>
   );
 };
 

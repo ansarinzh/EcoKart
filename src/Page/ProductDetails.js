@@ -7,6 +7,7 @@ import {
 import {Color} from '../assets/Color';
 import Button from '../Component/Button';
 import Counter from '../Component/Counter';
+import Header from '../Component/Header';
 
 const ProductDetails = props => {
   console.log('pros', props.navigation);
@@ -29,6 +30,7 @@ const ProductDetails = props => {
         flex: 1,
         justifyContent: 'space-between',
       }}>
+      <Header navigation={props.navigation} />
       <View>
         <Text
           style={{

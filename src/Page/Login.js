@@ -11,9 +11,19 @@ import PhoneInput from '../Component/PhoneInput';
 
 const Login = props => {
   return (
-    <View>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{paddingVertical: 10, paddingHorizontal: 10}}>
+    <>
+      <TouchableWithoutFeedback
+        onPress={Keyboard.dismiss}
+        style={{backgroundColor: 'red'}}>
+        <View
+          style={{
+            paddingVertical: 10,
+            paddingHorizontal: 10,
+            // backgroundColor: 'yellow',
+            display: 'flex',
+            flex: 1,
+            justifyContent: 'space-between',
+          }}>
           <View>
             <Image
               style={{
@@ -23,35 +33,37 @@ const Login = props => {
               }}
               source={require('../assets/images/login-amico.png')}
             />
+
+            <View style={{marginVertical: 20}}>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  fontSize: 20,
+                  fontWeight: '600',
+                  marginVertical: 5,
+                }}>
+                OTP Verification
+              </Text>
+              <Text
+                style={{
+                  alignSelf: 'center',
+                  fontWeight: '600',
+                  textAlign: 'center',
+                  marginVertical: 5,
+                }}>
+                We will send you ONE TIME PASSWORD to validate the phone number.
+              </Text>
+              <PhoneInput
+                label="Phone Number"
+                placeholder="Enter Phone Number"
+                width="95%"
+                maxLength={10}
+                pv={10}
+                mv={10}
+              />
+            </View>
           </View>
-          <View style={{marginVertical: 20}}>
-            <Text
-              style={{
-                alignSelf: 'center',
-                fontSize: 20,
-                fontWeight: '600',
-                marginVertical: 5,
-              }}>
-              OTP Verification
-            </Text>
-            <Text
-              style={{
-                alignSelf: 'center',
-                fontWeight: '600',
-                textAlign: 'center',
-                marginVertical: 5,
-              }}>
-              We will send you ONE TIME PASSWORD to validate the phone number.
-            </Text>
-          </View>
-          <PhoneInput
-            label="Phone Number"
-            placeholder="Enter Phone Number"
-            width="95%"
-            maxLength={10}
-            pv={10}
-            mv={10}
-          />
+
           <View style={{marginVertical: 15}}>
             <Button
               text="Login"
@@ -62,7 +74,7 @@ const Login = props => {
           </View>
         </View>
       </TouchableWithoutFeedback>
-    </View>
+    </>
   );
 };
 

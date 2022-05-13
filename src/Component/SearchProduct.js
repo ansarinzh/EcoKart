@@ -7,7 +7,8 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
-const SearchProduct = ({onFocus, onChangeText, focus}) => {
+import Iconcross from 'react-native-vector-icons/Entypo';
+const SearchProduct = ({onFocus, onChangeText, focus, closeList}) => {
   return (
     <>
       <View
@@ -29,15 +30,16 @@ const SearchProduct = ({onFocus, onChangeText, focus}) => {
           placeholder="Type here..."
           placeholderTextColor="black"
           style={{fontSize: 18, padding: hp('1.3%'), width: '80%'}}
-          //   onFocus={onFocus}
-          //   onChangeText={onChangeText}
+          onFocus={onFocus}
+          onChangeText={onChangeText}
         />
-        {focus === true ? (
+        {focus ? (
           <View style={{display: 'flex', justifyContent: 'center'}}>
-            <Icon
-              name="ios-cancel"
+            <Iconcross
+              name="cross"
               size={20}
               color="#000"
+              onPress={closeList}
               style={{alignSelf: 'center', marginRight: hp('5%')}}
             />
           </View>
