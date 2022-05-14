@@ -92,7 +92,7 @@ const Home = props => {
                 fontWeight: '500',
                 marginBottom: 15,
                 marginHorizontal: 5,
-                fontFamily: 'Macondo-Regular',
+                fontFamily: 'Rubik-Bold',
               }}>
               Category
             </Text>
