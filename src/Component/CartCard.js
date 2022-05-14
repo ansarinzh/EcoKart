@@ -1,23 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {Color} from '../assets/Color';
-import Button from './Button';
+
 import Counter from './Counter';
-import Label from './Label';
-import { useSelector, useDispatch } from 'react-redux'; 
+
+import {useSelector, useDispatch} from 'react-redux';
 import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
 
-
 const CartCard = ({data}) => {
-  const [show, setShow] = useState(false);
-  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.CartReducer);
-
 
   let quantity;
   cartItems.carts.map(q => {
@@ -26,21 +22,14 @@ const CartCard = ({data}) => {
     }
   });
 
-
-  const onIncrement = (data) => {
+  const onIncrement = data => {
     dispatch(AddToCart(data));
-    // setCount(prevCount => prevCount + 1);
   };
 
-  const onAddToCart = () => {
-    // dispatch()
-    setShow(true);
-  };
-  const removeAddToCart = (data) => {
+  const removeAddToCart = data => {
     dispatch(RemoveQtyItem(data));
-    // count == 0 ? setShow(false) : null;
-    // setCount(prevCount => prevCount - 1);
   };
+  const totaloncard = Number(data.price * quantity).toFixed(0);
   return (
     <View>
       <View style={styles.productCard}>
@@ -52,51 +41,59 @@ const CartCard = ({data}) => {
                 uri: data.image,
               }}
             />
-            <View
-              style={
-                {
-                  // width: wp('56%'),
-                  // backgroundColor: 'yellow',
-                  // alignSelf: 'flex-start',
-                }
-              }>
+            <View>
               <Text style={styles.heading}>{data.name}</Text>
 
-              <Text
-                style={{textDecorationLine: 'line-through', marginVertical: 2}}>
-                MRP {data.price}
-              </Text>
+              <View
+                style={{
+                  // backgroundColor: 'red',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  // marginVertical:9
+                }}>
+                <Text
+                  style={{
+                    textDecorationLine: 'line-through',
+                    marginVertical: 2,
+                  }}>
+                  MRP
+                </Text>
 
+                <Text style={{marginHorizontal: 9}}>₹{data.price}</Text>
+              </View>
               <Text
                 style={{
                   fontSize: 15,
-                  // alignSelf: 'flex-start',
-                  color: Color.secondary,
 
-                  // alignSelf: 'flex-start',
-                  //   backgroundColor: 'red',
+                  color: Color.secondary,
                 }}>
                 {data.price} / {data.unit}
               </Text>
-
-              {/* <Text style={{ ali}}></Text> */}
             </View>
           </View>
 
           <View
             style={{
               display: 'flex',
-              alignItems: 'center',
-              //   alignItems: 'flex-end',
-              // backgroundColor: 'blue',
-              // justifyContent: 'space-between',
+              justifyContent: 'space-between',
               marginHorizontal: 20,
+              // backgroundColor: 'red',
             }}>
             <Counter
-              removeFromCart={()=>removeAddToCart(data)}
+              removeFromCart={() => removeAddToCart(data)}
               count={quantity}
-              addToCart={()=> onIncrement(data)}
+              addToCart={() => onIncrement(data)}
             />
+            <Text
+              style={{
+                fontSize: 15,
+                // backgroundColor: 'red',
+
+                // color: Color.secondary,
+              }}>
+              Total: {totaloncard}
+            </Text>
           </View>
         </>
       </View>
@@ -106,16 +103,18 @@ const CartCard = ({data}) => {
 
 const styles = StyleSheet.create({
   productCard: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    height: hp('10%'),
+    // alignItems: 'center',
+    // backgroundColor: 'yellow',
+    height: hp('12%'),
     display: 'flex',
     flexDirection: 'row',
-    margin: 10,
+    marginVertical: 7,
+    marginHorizontal: 10,
     elevation: 5,
     paddingVertical: 10,
     borderRadius: 20,
     justifyContent: 'space-between',
+    zIndex: 999,
   },
   imgCard: {
     marginHorizontal: wp('3%'),

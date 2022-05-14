@@ -1,57 +1,126 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import Button from '../Component/Button';
 import CartCard from '../Component/CartCard';
 import Header from '../Component/Header';
-import cart from '../products.json';
+import {SwipeListView} from 'react-native-swipe-list-view';
 
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+import {RemoveFromCart} from '../Redux/Action/CartAction';
 const CartItem = props => {
+  const dispatch = useDispatch();
   const cartItem = useSelector(state => state.CartReducer.carts);
-  console.log('cartItem', cartItem);
+  const total = cartItem.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
   return (
     <>
       {cartItem.length > 0 ? (
         <>
           <View
             style={{
-              //   backgroundColor: 'green',
+              // backgroundColor: 'green',
               height: 530,
             }}>
             <Header navigation={props.navigation} />
-            <FlatList
+
+            <SwipeListView
               data={cartItem}
-              renderItem={data => <CartCard data={data.item} />}
+              renderItem={data => {
+                console.log('ddaaata', data);
+                return <CartCard data={data.item} />;
+              }}
+              renderHiddenItem={data => (
+                <View
+                  style={{
+                    // backgroundColor: 'yellow',
+                    flex: 1,
+                    justifyContent: 'flex-end',
+                    flexDirection: 'row',
+                  }}>
+                  <TouchableOpacity
+                    style={{
+                      // backgroundColor: 'red',
+                      justifyContent: 'center',
+                      alignItems: 'flex-end',
+                      paddingRight: 20,
+                      // height: 70,
+                      width: '20%',
+                      zIndex: 111,
+                    }}
+                    onPress={() => dispatch(RemoveFromCart(data.item._id))}>
+                    <Icon
+                      style={{zIndex: -111}}
+                      name="trash"
+                      color={'black'}
+                      size={30}
+                    />
+                  </TouchableOpacity>
+                </View>
+              )}
+              disableRightSwipe={true}
+              previewOpenDelay={3000}
+              friction={100}
+              tension={40}
+              leftOpenValue={75}
+              stopLeftSwipe={75}
+              rightOpenValue={-50}
             />
           </View>
           <View style={styles.coreView}>
             <View style={styles.card}>
               <Text>Subtotal</Text>
-              <Text>500</Text>
+              <Text>{Number(total).toFixed(0)}</Text>
             </View>
             <View style={styles.card}>
-              <Text>Subtotal</Text>
-              <Text>500</Text>
+              <Text>Delivey</Text>
+              <Text>Free</Text>
             </View>
-            <View style={styles.card}>
-              <Text>Subtotal</Text>
-              <Text>500</Text>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                // borderBottomColor: 'red',
+                // borderBottomWidth: 0.5,
+                paddingVertical: 15,
+              }}>
+              <Text>Total</Text>
+              <Text>{Number(total).toFixed(0)}</Text>
             </View>
             <View
               style={{
                 paddingVertical: 10,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}>
-              <Button text="Checkout" width="95%" height="7%" />
+              <Button text="Checkout" width="90%" height="6%" />
             </View>
           </View>
         </>
       ) : (
-        <View style={{
-          padding: 10,
-        }}>
-          <Text style={{ fontSize: 18, textAlign: 'center', marginVertical: 10}}>No items in the Cart</Text>
-          <Button text="Go to Home" width="95%" height="7%" onclick={()=> props.navigation.navigate('Home')} />
+        <View
+          style={{
+            padding: 10,
+            display: 'flex',
+            flex: 1,
+            justifyContent: 'space-between',
+          }}>
+          <Text
+            style={{
+              fontSize: 18,
+              textAlign: 'center',
+              marginVertical: 250,
+            }}>
+            No items in the Cart
+          </Text>
+          <Button
+            text="Go to Home"
+            width="95%"
+            height="7%"
+            onclick={() => props.navigation.navigate('Home')}
+          />
         </View>
       )}
     </>
@@ -80,8 +149,3 @@ const styles = StyleSheet.create({
   },
 });
 export default CartItem;
-/// finishing 2 screens(2hr)
-// login with phone and OTP(4hr)
-// details of products (2hr)
-
-// navigation with stack

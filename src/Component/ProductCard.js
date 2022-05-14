@@ -41,7 +41,7 @@ const ProductCard = ({data, navigation}) => {
     // setShow(true);
   };
   const removeAddToCart = data => {
-      dispatch(RemoveQtyItem(data));
+    dispatch(RemoveQtyItem(data));
     // count == 0 ? setShow(false) : setCount(prevCount => prevCount - 1);
   };
   return (
@@ -64,7 +64,7 @@ const ProductCard = ({data, navigation}) => {
             onPress={() => navigation.navigate('Product Detail')}
             style={styles.heading}>
             {data.name.length > 15
-              ? data.name.substring(0, 10 - 3) + '.....'
+              ? data.name.substring(0, 15 - 3) + '.....'
               : data.name}
           </Text>
           <Text style={{width: 130}}>
@@ -72,10 +72,21 @@ const ProductCard = ({data, navigation}) => {
               ? data.description.substring(0, 15 - 3) + '.....'
               : data.description}
           </Text>
+          <View
+            style={{
+              // backgroundColor: 'red',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              // marginVertical:9
+            }}>
+            <Text
+              style={{textDecorationLine: 'line-through', marginVertical: 2}}>
+              MRP
+            </Text>
 
-          <Text style={{textDecorationLine: 'line-through', marginVertical: 5}}>
-            `MRP ${data.price}`
-          </Text>
+            <Text style={{marginHorizontal: 9}}>₹{data.price}</Text>
+          </View>
 
           <Text
             style={{

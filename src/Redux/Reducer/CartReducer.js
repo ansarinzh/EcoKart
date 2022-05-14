@@ -28,6 +28,7 @@ export const CartReducer = (state = initialState, action) => {
     // ************ To remove item from cart ***************
     case REMOVE_FROM_CART:
       const data = state.carts.filter(el => el._id !== action.payload);
+      console.log("REMOVE_FROM", data);
       return {...state, carts: data};
 
     // ************ To remove quantity of product from cart page ************
