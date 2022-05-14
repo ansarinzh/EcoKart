@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -6,13 +7,21 @@ import Iconleft from 'react-native-vector-icons/AntDesign';
 
 import {useSelector} from 'react-redux';
 
-const Header = ({name, description, navigation}) => {
+const Header = ({
+  name,
+  description,
+  navigation,
+  HeaderName,
+  iconName,
+  screenName,
+  noQty,
+  cartIcon,
+}) => {
   const CartLength = useSelector(state => state.CartReducer);
-
-  console.log('cartlength', CartLength);
 
   return (
     <View
+      // eslint-disable-next-line react-native/no-inline-styles
       style={{
         // backgroundColor: 'red',
         display: 'flex',
@@ -21,14 +30,23 @@ const Header = ({name, description, navigation}) => {
         padding: 15,
         alignItems: 'center',
       }}>
-      {navigation ? (
-        <>
+      {HeaderName !== 'Home' ? (
+        <View
+          style={{
+            // backgroundColor: 'yellow',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 5,
+          }}>
           <Iconleft
-            name="arrowleft"
+            name={iconName}
             size={30}
             onPress={() => navigation.goBack()}
           />
-        </>
+          <Text style={{marginHorizontal: 10, fontSize: 19}}>{screenName}</Text>
+        </View>
       ) : (
         <View>
           <Text
@@ -43,7 +61,8 @@ const Header = ({name, description, navigation}) => {
           <Text style={{marginVertical: 4}}>{description}</Text>
         </View>
       )}
-      {CartLength?.carts?.length > 0 ? (
+
+      {CartLength?.carts?.length > 0 && noQty === 'noQty' ? (
         <View
           style={{
             position: 'absolute',
@@ -65,7 +84,7 @@ const Header = ({name, description, navigation}) => {
       <View style={{marginHorizontal: 10}}>
         <Icon
           onPress={() => navigation.navigate('cart')}
-          name="shopping-cart"
+          name={cartIcon}
           color={Color.primary}
           size={30}
         />

@@ -30,7 +30,14 @@ const ProductDetails = props => {
         flex: 1,
         justifyContent: 'space-between',
       }}>
-      <Header navigation={props.navigation} />
+      <Header
+        navigation={props.navigation}
+        // HeaderName="Home"
+        screenName="Deatils screen"
+        iconName="arrowleft"
+        cartIcon="shopping-cart"
+        noQty="noQty"
+      />
       <View>
         <Text
           style={{

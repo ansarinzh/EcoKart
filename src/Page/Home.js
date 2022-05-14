@@ -62,6 +62,11 @@ const Home = props => {
         name="Hey Buddy"
         description="Welcome to my app"
         navigation={props.navigation}
+        HeaderName="Home"
+        screenName="cart"
+        iconName="arrowleft"
+        cartIcon="shopping-cart"
+        noQty="noQty"
       />
       <SearchProduct
         onFocus={openList}
@@ -92,7 +97,7 @@ const Home = props => {
                 fontWeight: '500',
                 marginBottom: 15,
                 marginHorizontal: 5,
-                fontFamily: 'Macondo-Regular',
+                fontFamily: 'Rubik-Bold',
               }}>
               Category
             </Text>
