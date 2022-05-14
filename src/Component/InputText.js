@@ -1,16 +1,18 @@
 import React from 'react';
 import {View, StyleSheet, TextInput, Text} from 'react-native';
+import { Fonts } from '../assets/Fonts';
 
-const InputText = ({label, placeholder}) => {
+const InputText = ({label, placeholder, keyBoarType}) => {
   const [text, onChangeText] = React.useState('');
   return (
     <View style={{paddingVertical: 10,}}>
-      <Text style={{marginVertical: 10}}>{label}</Text>
+      <Text style={{marginVertical: 10, fontFamily: Fonts.primaryFont, fontWeight:"700"}}>{label}</Text>
       <TextInput
         placeholder={placeholder}
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
+        keyboardType={keyBoarType}
       />
     </View>
   );

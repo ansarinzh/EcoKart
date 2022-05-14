@@ -10,6 +10,7 @@ import Counter from './Counter';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
+import {Fonts} from '../assets/Fonts';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {RemoveFromCart} from '../Redux/Action/CartAction';
@@ -66,16 +67,22 @@ const CartCard = ({data}) => {
                   style={{
                     textDecorationLine: 'line-through',
                     marginVertical: 2,
+                    fontFamily: Fonts.primaryFont,
                   }}>
-                  MRP
+                  MRP{' '}
+                  <Text
+                    style={{
+                      marginHorizontal: 9,
+                      fontFamily: Fonts.primaryFont,
+                    }}>
+                    ₹{data.price}
+                  </Text>
                 </Text>
-
-                <Text style={{marginHorizontal: 9}}>₹{data.price}</Text>
               </View>
               <Text
                 style={{
                   fontSize: 15,
-
+                  fontFamily: Fonts.primaryFont,
                   color: Color.secondary,
                 }}>
                 {data.price} / {data.unit}
@@ -96,6 +103,10 @@ const CartCard = ({data}) => {
               count={quantity}
               addToCart={() => onIncrement(data)}
             />
+            {/* <Text
+              style={{
+                fontSize: 15,
+                // backgroundColor: 'red', */}
 
             <View
               style={{
@@ -110,6 +121,8 @@ const CartCard = ({data}) => {
               <Text
                 style={{
                   fontSize: 15,
+                fontFamily: Fonts.headingFont,
+
                   // backgroundColor: 'red',
 
                   // color: Color.secondary,
@@ -134,7 +147,7 @@ const CartCard = ({data}) => {
 const styles = StyleSheet.create({
   productCard: {
     // alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     height: hp('12%'),
     display: 'flex',
     flexDirection: 'row',
@@ -155,10 +168,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     display: 'flex',
-    fontSize: 18,
+    // fontSize: 18,
     // marginVertical: 5,
     // backgroundColor: 'red',
     alignSelf: 'flex-start',
+    fontFamily: Fonts.subHeadingFont,
   },
 });
 export default CartCard;

@@ -3,8 +3,9 @@ import {View, Text, FlatList, StyleSheet} from 'react-native';
 import Button from '../Component/Button';
 import CartCard from '../Component/CartCard';
 import Header from '../Component/Header';
-
 import {useSelector, useDispatch} from 'react-redux';
+import {RemoveFromCart} from '../Redux/Action/CartAction';
+import {Fonts} from '../assets/Fonts';
 
 const CartItem = props => {
   const cartItem = useSelector(state => state.CartReducer.carts);
@@ -32,12 +33,14 @@ const CartItem = props => {
           </View>
           <View style={styles.coreView}>
             <View style={styles.card}>
-              <Text>Subtotal</Text>
-              <Text>{Number(total).toFixed(0)}</Text>
+              <Text style={{fontFamily: Fonts.subHeadingFont}}>Subtotal</Text>
+              <Text style={{fontFamily: Fonts.headingFont}}>
+                {Number(total).toFixed(0)}
+              </Text>
             </View>
             <View style={styles.card}>
-              <Text>Delivey</Text>
-              <Text>Free</Text>
+              <Text style={{fontFamily: Fonts.subHeadingFont}}>Delivey</Text>
+              <Text style={{fontFamily: Fonts.headingFont}}>Free</Text>
             </View>
             <View
               style={{
@@ -48,8 +51,10 @@ const CartItem = props => {
                 // borderBottomWidth: 0.5,
                 paddingVertical: 15,
               }}>
-              <Text>Total</Text>
-              <Text>{Number(total).toFixed(0)}</Text>
+              <Text style={{fontFamily: Fonts.subHeadingFont}}>Total</Text>
+              <Text style={{fontFamily: Fonts.headingFont, fontSize: 16}}>
+                {Number(total).toFixed(0)}
+              </Text>
             </View>
             <View
               style={{
@@ -58,7 +63,12 @@ const CartItem = props => {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <Button text="Checkout" width="90%" height="6%" />
+              <Button
+                text="Checkout"
+                width="90%"
+                height="6%"
+                onclick={() => props.navigation.navigate('checkout')}
+              />
             </View>
           </View>
         </>
@@ -75,6 +85,7 @@ const CartItem = props => {
               fontSize: 18,
               textAlign: 'center',
               marginVertical: 250,
+              fontFamily: Fonts.headingFont,
             }}>
             No items in the Cart
           </Text>
