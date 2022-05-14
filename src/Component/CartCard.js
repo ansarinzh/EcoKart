@@ -48,7 +48,11 @@ const CartCard = ({data}) => {
               }}
             />
             <View>
-              <Text style={styles.heading}>{data.name}</Text>
+              <Text style={styles.heading}>
+                {data.name.length > 15
+                  ? data.name.substring(0, 15 - 3) + '.....'
+                  : data.name}
+              </Text>
 
               <View
                 style={{
