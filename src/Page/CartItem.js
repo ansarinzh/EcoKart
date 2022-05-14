@@ -1,16 +1,12 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 import Button from '../Component/Button';
 import CartCard from '../Component/CartCard';
 import Header from '../Component/Header';
-import {SwipeListView} from 'react-native-swipe-list-view';
 
 import {useSelector, useDispatch} from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {RemoveFromCart} from '../Redux/Action/CartAction';
 const CartItem = props => {
-  const dispatch = useDispatch();
   const cartItem = useSelector(state => state.CartReducer.carts);
   const total = cartItem.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
   return (
@@ -22,49 +18,16 @@ const CartItem = props => {
               // backgroundColor: 'green',
               height: 530,
             }}>
-            <Header navigation={props.navigation} />
-
-            <SwipeListView
+            <Header
+              navigation={props.navigation}
+              screenName="Cart"
+              iconName="arrowleft"
+              // noQty="noQty"
+              // cartIcon="shopping-cart"
+            />
+            <FlatList
               data={cartItem}
-              renderItem={data => {
-                console.log('ddaaata', data);
-                return <CartCard data={data.item} />;
-              }}
-              renderHiddenItem={data => (
-                <View
-                  style={{
-                    // backgroundColor: 'yellow',
-                    flex: 1,
-                    justifyContent: 'flex-end',
-                    flexDirection: 'row',
-                  }}>
-                  <TouchableOpacity
-                    style={{
-                      // backgroundColor: 'red',
-                      justifyContent: 'center',
-                      alignItems: 'flex-end',
-                      paddingRight: 20,
-                      // height: 70,
-                      width: '20%',
-                      zIndex: 111,
-                    }}
-                    onPress={() => dispatch(RemoveFromCart(data.item._id))}>
-                    <Icon
-                      style={{zIndex: -111}}
-                      name="trash"
-                      color={'black'}
-                      size={30}
-                    />
-                  </TouchableOpacity>
-                </View>
-              )}
-              disableRightSwipe={true}
-              previewOpenDelay={3000}
-              friction={100}
-              tension={40}
-              leftOpenValue={75}
-              stopLeftSwipe={75}
-              rightOpenValue={-50}
+              renderItem={data => <CartCard data={data.item} />}
             />
           </View>
           <View style={styles.coreView}>
