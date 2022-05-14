@@ -63,6 +63,11 @@ const Home = props => {
         name="Hey Buddy"
         description="Welcome to my app"
         navigation={props.navigation}
+        HeaderName="Home"
+        screenName="cart"
+        iconName="arrowleft"
+        cartIcon="shopping-cart"
+        noQty="noQty"
       />
       <SearchProduct
         onFocus={openList}

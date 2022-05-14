@@ -11,7 +11,9 @@ import Counter from './Counter';
 import {useSelector, useDispatch} from 'react-redux';
 import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
 import {Fonts} from '../assets/Fonts';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+import {RemoveFromCart} from '../Redux/Action/CartAction';
 const CartCard = ({data}) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.CartReducer);
@@ -29,6 +31,10 @@ const CartCard = ({data}) => {
 
   const removeAddToCart = data => {
     dispatch(RemoveQtyItem(data));
+  };
+
+  const deleteCart = data => {
+    dispatch(RemoveFromCart(data._id));
   };
   const totaloncard = Number(data.price * quantity).toFixed(0);
   return (
@@ -89,6 +95,7 @@ const CartCard = ({data}) => {
               display: 'flex',
               justifyContent: 'space-between',
               marginHorizontal: 20,
+
               // backgroundColor: 'red',
             }}>
             <Counter
@@ -96,16 +103,40 @@ const CartCard = ({data}) => {
               count={quantity}
               addToCart={() => onIncrement(data)}
             />
-            <Text
+            {/* <Text
               style={{
                 fontSize: 15,
-                fontFamily: Fonts.headingFont,
-                // backgroundColor: 'red',
+                // backgroundColor: 'red', */}
 
-                // color: Color.secondary,
+            <View
+              style={{
+                // backgroundColor: 'red',
+                display: 'flex',
+                flexDirection: 'row',
+                paddingVertical: 10,
+                alignItems: 'center',
+                justifyContent: 'center',
+                // marginlef: 10,
               }}>
-              Total: {totaloncard}
-            </Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                fontFamily: Fonts.headingFont,
+
+                  // backgroundColor: 'red',
+
+                  // color: Color.secondary,
+                }}>
+                Total: {totaloncard}
+              </Text>
+              <Icon
+                style={{marginLeft: 10}}
+                name="trash"
+                color={'black'}
+                size={25}
+                onPress={() => deleteCart(data)}
+              />
+            </View>
           </View>
         </>
       </View>
