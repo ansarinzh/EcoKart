@@ -6,6 +6,7 @@ import Header from '../Component/Header';
 import {useSelector, useDispatch} from 'react-redux';
 import {RemoveFromCart} from '../Redux/Action/CartAction';
 import {Fonts} from '../assets/Fonts';
+import { Color } from '../assets/Color';
 
 const CartItem = props => {
   const cartItem = useSelector(state => state.CartReducer.carts);
@@ -67,7 +68,7 @@ const CartItem = props => {
                 text="Checkout"
                 width="90%"
                 height="6%"
-                onclick={() => props.navigation.navigate('checkout')}
+                onclick={() => props.navigation.navigate('billing')}
               />
             </View>
           </View>
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomColor: 'red',
+    borderBottomColor: Color.primary,
     borderBottomWidth: 0.5,
     paddingVertical: 15,
   },
