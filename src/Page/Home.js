@@ -58,7 +58,16 @@ const Home = props => {
   };
   return (
     <View style={{backgroundColor: Color.btnTextColor}}>
-      <Header name="Hey Buddy" description="Welcome to my app" />
+      <Header
+        name="Hey Buddy"
+        description="Welcome to my app"
+        navigation={props.navigation}
+        HeaderName="Home"
+        screenName="cart"
+        iconName="arrowleft"
+        cartIcon="shopping-cart"
+        noQty="noQty"
+      />
       <SearchProduct
         onFocus={openList}
         onChangeText={text => searchProduct(text)}
@@ -88,6 +97,7 @@ const Home = props => {
                 fontWeight: '500',
                 marginBottom: 15,
                 marginHorizontal: 5,
+                fontFamily: 'Rubik-Bold',
               }}>
               Category
             </Text>

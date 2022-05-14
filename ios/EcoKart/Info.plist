@@ -72,6 +72,12 @@
 		<string>Rubik-Italic-VariableFont_wght.ttf</string>
 		<string>Rubik-VariableFont_wght.ttf</string>
 		<string>Poppins-LightItalic.ttf</string>
+		<string>Macondo-Regular.ttf</string>
+		<string>Rubik-Black.ttf</string>
+		<string>Rubik-Bold.ttf</string>
+		<string>Rubik-ExtraBold.ttf</string>
+		<string>Rubik-Medium.ttf</string>
+		<string>Rubik-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

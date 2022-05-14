@@ -1,28 +1,41 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {Color} from '../assets/Color';
-import Button from './Button';
+
 import Counter from './Counter';
-import Label from './Label';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import {RemoveFromCart} from '../Redux/Action/CartAction';
 const CartCard = ({data}) => {
-  const [show, setShow] = useState(false);
-  const [count, setCount] = useState(0);
-  const onIncrement = () => {
-    setCount(prevCount => prevCount + 1);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.CartReducer);
+
+  let quantity;
+  cartItems.carts.map(q => {
+    if (q._id === data._id) {
+      quantity = q.qty;
+    }
+  });
+
+  const onIncrement = data => {
+    dispatch(AddToCart(data));
   };
 
-  const onAddToCart = () => {
-    setShow(true);
+  const removeAddToCart = data => {
+    dispatch(RemoveQtyItem(data));
   };
-  const removeAddToCart = () => {
-    count == 0 ? setShow(false) : null;
-    setCount(prevCount => prevCount - 1);
+
+  const deleteCart = data => {
+    dispatch(RemoveFromCart(data._id));
   };
+  const totaloncard = Number(data.price * quantity).toFixed(0);
   return (
     <View>
       <View style={styles.productCard}>
@@ -34,51 +47,79 @@ const CartCard = ({data}) => {
                 uri: data.image,
               }}
             />
-            <View
-              style={
-                {
-                  // width: wp('56%'),
-                  // backgroundColor: 'yellow',
-                  // alignSelf: 'flex-start',
-                }
-              }>
+            <View>
               <Text style={styles.heading}>{data.name}</Text>
 
-              <Text
-                style={{textDecorationLine: 'line-through', marginVertical: 2}}>
-                `MRP ${data.price}`
-              </Text>
+              <View
+                style={{
+                  // backgroundColor: 'red',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  // marginVertical:9
+                }}>
+                <Text
+                  style={{
+                    textDecorationLine: 'line-through',
+                    marginVertical: 2,
+                  }}>
+                  MRP
+                </Text>
 
+                <Text style={{marginHorizontal: 9}}>₹{data.price}</Text>
+              </View>
               <Text
                 style={{
                   fontSize: 15,
-                  // alignSelf: 'flex-start',
-                  color: Color.secondary,
 
-                  // alignSelf: 'flex-start',
-                  //   backgroundColor: 'red',
+                  color: Color.secondary,
                 }}>
                 {data.price} / {data.unit}
               </Text>
-
-              {/* <Text style={{ ali}}></Text> */}
             </View>
           </View>
 
           <View
             style={{
               display: 'flex',
-              alignItems: 'center',
-              //   alignItems: 'flex-end',
-              // backgroundColor: 'blue',
-              // justifyContent: 'space-between',
+              justifyContent: 'space-between',
               marginHorizontal: 20,
+
+              // backgroundColor: 'red',
             }}>
             <Counter
-              removeFromCart={removeAddToCart}
-              count={count}
-              addToCart={onIncrement}
+              removeFromCart={() => removeAddToCart(data)}
+              count={quantity}
+              addToCart={() => onIncrement(data)}
             />
+
+            <View
+              style={{
+                // backgroundColor: 'red',
+                display: 'flex',
+                flexDirection: 'row',
+                paddingVertical: 10,
+                alignItems: 'center',
+                justifyContent: 'center',
+                // marginlef: 10,
+              }}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  // backgroundColor: 'red',
+
+                  // color: Color.secondary,
+                }}>
+                Total: {totaloncard}
+              </Text>
+              <Icon
+                style={{marginLeft: 10}}
+                name="trash"
+                color={'black'}
+                size={25}
+                onPress={() => deleteCart(data)}
+              />
+            </View>
           </View>
         </>
       </View>
@@ -88,16 +129,18 @@ const CartCard = ({data}) => {
 
 const styles = StyleSheet.create({
   productCard: {
-    alignItems: 'center',
+    // alignItems: 'center',
     backgroundColor: '#fff',
-    height: hp('13%'),
+    height: hp('12%'),
     display: 'flex',
     flexDirection: 'row',
-    margin: 10,
+    marginVertical: 7,
+    marginHorizontal: 10,
     elevation: 5,
     paddingVertical: 10,
     borderRadius: 20,
     justifyContent: 'space-between',
+    zIndex: 999,
   },
   imgCard: {
     marginHorizontal: wp('3%'),
