@@ -35,6 +35,10 @@
 		851D21549B244E97A16EDADD /* Rubik-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E98A22650D5443C6A9FD5E05 /* Rubik-Italic-VariableFont_wght.ttf */; };
 		731BE311A6474E2A8CFE259E /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF38D649E414A62B2EA4F53 /* Rubik-VariableFont_wght.ttf */; };
 		3D45612AB290431496FD0CB3 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EE1A043F9954796B045FF4E /* Poppins-LightItalic.ttf */; };
+		A1199DBE301B46718F7471C1 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1A321C3DF5C44118E7859A0 /* Poppins-LightItalic.ttf */; };
+		87EDDC9E8CA5457FB95D655E /* Rubik-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2218AC83AA654B89990CAA18 /* Rubik-Italic-VariableFont_wght.ttf */; };
+		98B7E15E4EF1420F857A52C1 /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A18F871DE4234074A804CE11 /* Rubik-VariableFont_wght.ttf */; };
+		A613F338A67B43F3A7113BBC /* Macondo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6732FF82D93E424B98677DA9 /* Macondo-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +90,10 @@
 		E98A22650D5443C6A9FD5E05 /* Rubik-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Rubik-Italic-VariableFont_wght.ttf"; path = "../assets/fonts/Rubik-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8BF38D649E414A62B2EA4F53 /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Rubik-VariableFont_wght.ttf"; path = "../assets/fonts/Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1EE1A043F9954796B045FF4E /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; name = "Poppins-LightItalic.ttf"; path = "../assets/fonts/Poppins-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B1A321C3DF5C44118E7859A0 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; name = "Poppins-LightItalic.ttf"; path = "../android/app/assets/fonts/Poppins-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2218AC83AA654B89990CAA18 /* Rubik-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Rubik-Italic-VariableFont_wght.ttf"; path = "../android/app/assets/fonts/Rubik-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A18F871DE4234074A804CE11 /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Rubik-VariableFont_wght.ttf"; path = "../android/app/assets/fonts/Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6732FF82D93E424B98677DA9 /* Macondo-Regular.ttf */ = {isa = PBXFileReference; name = "Macondo-Regular.ttf"; path = "../assets/fonts/Macondo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +223,10 @@
 				E98A22650D5443C6A9FD5E05 /* Rubik-Italic-VariableFont_wght.ttf */,
 				8BF38D649E414A62B2EA4F53 /* Rubik-VariableFont_wght.ttf */,
 				1EE1A043F9954796B045FF4E /* Poppins-LightItalic.ttf */,
+				B1A321C3DF5C44118E7859A0 /* Poppins-LightItalic.ttf */,
+				2218AC83AA654B89990CAA18 /* Rubik-Italic-VariableFont_wght.ttf */,
+				A18F871DE4234074A804CE11 /* Rubik-VariableFont_wght.ttf */,
+				6732FF82D93E424B98677DA9 /* Macondo-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -337,6 +349,10 @@
 				851D21549B244E97A16EDADD /* Rubik-Italic-VariableFont_wght.ttf in Resources */,
 				731BE311A6474E2A8CFE259E /* Rubik-VariableFont_wght.ttf in Resources */,
 				3D45612AB290431496FD0CB3 /* Poppins-LightItalic.ttf in Resources */,
+				A1199DBE301B46718F7471C1 /* Poppins-LightItalic.ttf in Resources */,
+				87EDDC9E8CA5457FB95D655E /* Rubik-Italic-VariableFont_wght.ttf in Resources */,
+				98B7E15E4EF1420F857A52C1 /* Rubik-VariableFont_wght.ttf in Resources */,
+				A613F338A67B43F3A7113BBC /* Macondo-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
