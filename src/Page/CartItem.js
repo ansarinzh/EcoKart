@@ -95,7 +95,12 @@ const CartItem = props => {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <Button text="Checkout" width="90%" height="6%" />
+              <Button
+                text="Checkout"
+                width="90%"
+                height="6%"
+                onclick={() => props.navigation.navigate('checkout')}
+              />
             </View>
           </View>
         </>

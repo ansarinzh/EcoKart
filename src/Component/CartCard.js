@@ -104,7 +104,7 @@ const CartCard = ({data}) => {
 const styles = StyleSheet.create({
   productCard: {
     // alignItems: 'center',
-    // backgroundColor: 'yellow',
+    backgroundColor: '#FFF',
     height: hp('12%'),
     display: 'flex',
     flexDirection: 'row',
