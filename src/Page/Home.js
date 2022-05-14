@@ -13,6 +13,7 @@ import {
 import Header from '../Component/Header';
 import categories from '../categories.json';
 import SearchedProductList from '../Component/SearchedProductList';
+import { Fonts } from '../assets/Fonts';
 const Home = props => {
   const [focus, setFocus] = useState();
   const [productsFiltered, setProductsFiltered] = useState([]);
@@ -92,7 +93,7 @@ const Home = props => {
                 fontWeight: '500',
                 marginBottom: 15,
                 marginHorizontal: 5,
-                fontFamily: 'Rubik-Bold',
+                fontFamily: Fonts.headingFont,
               }}>
               Category
             </Text>
@@ -106,7 +107,7 @@ const Home = props => {
           </View>
 
           <View style={{padding: 10}}>
-            <Text style={{fontSize: 20, fontWeight: '700'}}>Popular</Text>
+            <Text style={{fontSize: 20, fontFamily: Fonts.headingFont}}>Popular</Text>
             <FlatList
               data={products}
               renderItem={data => (

@@ -10,6 +10,7 @@ import Counter from './Counter';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
+import {Fonts} from '../assets/Fonts';
 
 const CartCard = ({data}) => {
   const dispatch = useDispatch();
@@ -42,7 +43,11 @@ const CartCard = ({data}) => {
               }}
             />
             <View>
-              <Text style={styles.heading}>{data.name}</Text>
+              <Text style={styles.heading}>
+                {data.name.length > 15
+                  ? data.name.substring(0, 15 - 3) + '.....'
+                  : data.name}
+              </Text>
 
               <View
                 style={{
@@ -56,16 +61,22 @@ const CartCard = ({data}) => {
                   style={{
                     textDecorationLine: 'line-through',
                     marginVertical: 2,
+                    fontFamily: Fonts.primaryFont,
                   }}>
-                  MRP
+                  MRP{' '}
+                  <Text
+                    style={{
+                      marginHorizontal: 9,
+                      fontFamily: Fonts.primaryFont,
+                    }}>
+                    ₹{data.price}
+                  </Text>
                 </Text>
-
-                <Text style={{marginHorizontal: 9}}>₹{data.price}</Text>
               </View>
               <Text
                 style={{
                   fontSize: 15,
-
+                  fontFamily: Fonts.primaryFont,
                   color: Color.secondary,
                 }}>
                 {data.price} / {data.unit}
@@ -88,6 +99,7 @@ const CartCard = ({data}) => {
             <Text
               style={{
                 fontSize: 15,
+                fontFamily: Fonts.headingFont,
                 // backgroundColor: 'red',
 
                 // color: Color.secondary,
@@ -125,10 +137,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     display: 'flex',
-    fontSize: 18,
+    // fontSize: 18,
     // marginVertical: 5,
     // backgroundColor: 'red',
     alignSelf: 'flex-start',
+    fontFamily: Fonts.subHeadingFont,
   },
 });
 export default CartCard;

@@ -9,6 +9,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {RemoveFromCart} from '../Redux/Action/CartAction';
+import { Fonts } from '../assets/Fonts';
 const CartItem = props => {
   const dispatch = useDispatch();
   const cartItem = useSelector(state => state.CartReducer.carts);
@@ -69,12 +70,12 @@ const CartItem = props => {
           </View>
           <View style={styles.coreView}>
             <View style={styles.card}>
-              <Text>Subtotal</Text>
-              <Text>{Number(total).toFixed(0)}</Text>
+              <Text style={{fontFamily: Fonts.subHeadingFont}}>Subtotal</Text>
+              <Text style={{fontFamily: Fonts.headingFont}}>{Number(total).toFixed(0)}</Text>
             </View>
             <View style={styles.card}>
-              <Text>Delivey</Text>
-              <Text>Free</Text>
+              <Text style={{fontFamily: Fonts.subHeadingFont}}>Delivey</Text>
+              <Text style={{fontFamily: Fonts.headingFont}}>Free</Text>
             </View>
             <View
               style={{
@@ -85,8 +86,8 @@ const CartItem = props => {
                 // borderBottomWidth: 0.5,
                 paddingVertical: 15,
               }}>
-              <Text>Total</Text>
-              <Text>{Number(total).toFixed(0)}</Text>
+              <Text style={{fontFamily: Fonts.subHeadingFont}}>Total</Text>
+              <Text style={{fontFamily: Fonts.headingFont, fontSize:16}}>{Number(total).toFixed(0)}</Text>
             </View>
             <View
               style={{
@@ -117,6 +118,7 @@ const CartItem = props => {
               fontSize: 18,
               textAlign: 'center',
               marginVertical: 250,
+              fontFamily:Fonts.headingFont
             }}>
             No items in the Cart
           </Text>

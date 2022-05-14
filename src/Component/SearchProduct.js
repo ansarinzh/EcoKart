@@ -8,6 +8,7 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Iconcross from 'react-native-vector-icons/Entypo';
+import {Fonts} from '../assets/Fonts';
 const SearchProduct = ({onFocus, onChangeText, focus, closeList}) => {
   return (
     <>
@@ -29,7 +30,12 @@ const SearchProduct = ({onFocus, onChangeText, focus, closeList}) => {
         <TextInput
           placeholder="Type here..."
           placeholderTextColor="black"
-          style={{fontSize: 18, padding: hp('1.3%'), width: '80%'}}
+          style={{
+            fontSize: 15,
+            padding: hp('1.3%'),
+            width: '80%',
+            fontFamily: Fonts.primaryFont,
+          }}
           onFocus={onFocus}
           onChangeText={onChangeText}
         />

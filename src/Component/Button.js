@@ -5,13 +5,20 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {Color} from '../assets/Color';
+import {Fonts} from '../assets/Fonts';
 const Button = ({text, onclick, width, height}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={onclick}
         style={[styles.button, {height: hp(height), width: wp(width)}]}>
-        <Text style={{color: Color.btnTextColor}}>{text}</Text>
+        <Text
+          style={{
+            color: Color.btnTextColor,
+            fontFamily: Fonts.btnFont,
+          }}>
+          {text}
+        </Text>
       </TouchableOpacity>
     </View>
   );

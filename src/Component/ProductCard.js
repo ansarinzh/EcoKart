@@ -10,6 +10,7 @@ import Counter from './Counter';
 import Label from './Label';
 import {useSelector, useDispatch} from 'react-redux';
 import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
+import {Fonts} from '../assets/Fonts';
 
 const ProductCard = ({data, navigation}) => {
   const [show, setShow] = useState(false);
@@ -67,7 +68,7 @@ const ProductCard = ({data, navigation}) => {
               ? data.name.substring(0, 15 - 3) + '.....'
               : data.name}
           </Text>
-          <Text style={{width: 130}}>
+          <Text style={{width: 130, fontFamily: Fonts.primaryFont}}>
             {data.description.length > 15
               ? data.description.substring(0, 15 - 3) + '.....'
               : data.description}
@@ -81,7 +82,7 @@ const ProductCard = ({data, navigation}) => {
               // marginVertical:9
             }}>
             <Text
-              style={{textDecorationLine: 'line-through', marginVertical: 2}}>
+              style={{textDecorationLine: 'line-through', marginVertical: 2, fontFamily: Fonts.primaryFont}}>
               MRP
             </Text>
 
@@ -93,6 +94,7 @@ const ProductCard = ({data, navigation}) => {
               fontSize: 15,
               alignSelf: 'flex-start',
               color: Color.secondary,
+              fontFamily:Fonts.primaryFont
             }}>
             {data.price} / {data.unit}
           </Text>
@@ -158,10 +160,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     display: 'flex',
-    fontSize: 18,
+    // fontSize: 18,
     marginVertical: 5,
     // backgroundColor: 'red',
     alignSelf: 'flex-start',
+    fontFamily: Fonts.subHeadingFont,
   },
 });
 export default ProductCard;
