@@ -27,10 +27,12 @@ const CartItem = props => {
               // noQty="noQty"
               // cartIcon="shopping-cart"
             />
-            <FlatList
-              data={cartItem}
-              renderItem={data => <CartCard data={data.item} />}
-            />
+            <View style={{marginBottom: 100}}>
+              <FlatList
+                data={cartItem}
+                renderItem={data => <CartCard data={data.item} />}
+              />
+            </View>
           </View>
           <View style={styles.coreView}>
             <View style={styles.card}>
@@ -50,7 +52,7 @@ const CartItem = props => {
                 justifyContent: 'space-between',
                 // borderBottomColor: 'red',
                 // borderBottomWidth: 0.5,
-                paddingVertical: 15,
+                paddingVertical: 10,
               }}>
               <Text style={{fontFamily: Fonts.subHeadingFont}}>Total</Text>
               <Text style={{fontFamily: Fonts.headingFont, fontSize: 16}}>
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     position: 'absolute',
     bottom: 0,
-    height: 250,
+    height: 200,
     width: '100%',
     padding: 10,
     borderTopEndRadius: 10,
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottomColor: Color.primary,
     borderBottomWidth: 0.5,
-    paddingVertical: 15,
+    paddingVertical: 10,
   },
 });
 export default CartItem;

@@ -15,7 +15,7 @@ import {Fonts} from '../assets/Fonts';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const CheckoutProductItem = ({data}) => {
-  console.log('datsssa', data);
+  // console.log('datsssa', data);
   // const totaloncard = Number(data.price * quantity).toFixed(0);
   return (
     <View>
@@ -66,29 +66,6 @@ const CheckoutProductItem = ({data}) => {
                 {data.price} / {data.unit}
               </Text>
             </View>
-            {/* <View
-              style={{
-                // backgroundColor: 'red',
-                display: 'flex',
-                flexDirection: 'row',
-                paddingVertical: 10,
-                alignItems: 'center',
-                justifyContent: 'center',
-                // marginlef: 10,
-              }}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontFamily: Fonts.headingFont,
-                  display: 'flex',
-                  alignSelf: 'flex-end',
-                  backgroundColor: 'red',
-
-                  // color: Color.secondary,
-                }}>
-                Total: {'totaloncard'}
-              </Text>
-            </View> */}
           </View>
         </>
       </View>
@@ -100,7 +77,7 @@ const styles = StyleSheet.create({
   productCard: {
     // alignItems: 'center',
     backgroundColor: '#FFF',
-    height: hp('12%'),
+    height: hp('10%'),
     display: 'flex',
     flexDirection: 'row',
     marginVertical: 7,
@@ -113,8 +90,8 @@ const styles = StyleSheet.create({
   },
   imgCard: {
     marginHorizontal: wp('3%'),
-    height: hp('9%'),
-    width: wp('16%'),
+    height: hp('6%'),
+    width: wp('13%'),
     borderRadius: 20,
     resizeMode: 'contain',
   },

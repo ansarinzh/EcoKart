@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
     borderColor: Color.primary,
     // borderWidth: 0.5,
     justifyContent: 'space-between',
+    // marginBottom
   },
   imgCard: {
     marginHorizontal: wp('2%'),

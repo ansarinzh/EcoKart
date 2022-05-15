@@ -34,7 +34,7 @@ const CartCard = ({data}) => {
   };
 
   const deleteCart = data => {
-    dispatch(RemoveFromCart(data._id));
+    dispatch(RemoveFromCart(data.id));
   };
   const totaloncard = Number(data.price * quantity).toFixed(0);
   return (
@@ -103,10 +103,6 @@ const CartCard = ({data}) => {
               count={quantity}
               addToCart={() => onIncrement(data)}
             />
-            {/* <Text
-              style={{
-                fontSize: 15,
-                // backgroundColor: 'red', */}
 
             <View
               style={{
@@ -114,6 +110,7 @@ const CartCard = ({data}) => {
                 display: 'flex',
                 flexDirection: 'row',
                 paddingVertical: 10,
+                paddingHorizontal: 7,
                 alignItems: 'center',
                 justifyContent: 'center',
                 // marginlef: 10,
@@ -122,10 +119,7 @@ const CartCard = ({data}) => {
                 style={{
                   fontSize: 15,
                   fontFamily: Fonts.headingFont,
-
-                  // backgroundColor: 'red',
-
-                  // color: Color.secondary,
+                  // width: 80,
                 }}>
                 Total: {totaloncard}
               </Text>
@@ -133,7 +127,7 @@ const CartCard = ({data}) => {
                 style={{marginLeft: 10}}
                 name="trash"
                 color={'black'}
-                size={25}
+                size={20}
                 onPress={() => deleteCart(data)}
               />
             </View>

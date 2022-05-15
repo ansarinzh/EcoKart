@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useCallback} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
 import {
@@ -121,7 +122,7 @@ const Home = props => {
   return (
     <View style={{backgroundColor: Color.btnTextColor}}>
       {loading === false ? (
-        <View>
+        <>
           <Header
             name="Hey Buddy"
             description="Welcome to my app"
@@ -150,9 +151,7 @@ const Home = props => {
               refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
               }>
-              <View>
-                <Banner />
-              </View>
+              <Banner />
 
               <View style={{padding: 10}}>
                 <Text
@@ -178,32 +177,33 @@ const Home = props => {
                 <Text style={{fontSize: 20, fontFamily: Fonts.headingFont}}>
                   Popular
                 </Text>
-
-                {productsCtg.length > 0 ? (
-                  <FlatList
-                    data={productsCtg}
-                    renderItem={data => (
-                      <ProductCard
-                        navigation={props.navigation}
-                        data={data.item}
-                      />
-                    )}
-                  />
-                ) : (
-                  <View
-                    style={{
-                      height: 200,
-                      alignContent: 'center',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <Text>No products found</Text>
-                  </View>
-                )}
+                <View style={{marginBottom: 150}}>
+                  {productsCtg.length > 0 ? (
+                    <FlatList
+                      data={productsCtg}
+                      renderItem={data => (
+                        <ProductCard
+                          navigation={props.navigation}
+                          data={data.item}
+                        />
+                      )}
+                    />
+                  ) : (
+                    <View
+                      style={{
+                        height: 200,
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text>No products found</Text>
+                    </View>
+                  )}
+                </View>
               </View>
             </ScrollView>
           )}
-        </View>
+        </>
       ) : (
         <View
           style={{
@@ -212,7 +212,7 @@ const Home = props => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <ActivityIndicator size="large" color="red" />
+          <ActivityIndicator size="large" color={Color.primary} />
         </View>
       )}
     </View>

@@ -8,10 +8,12 @@ const Tab = createBottomTabNavigator();
 import HomeNavigator from './Homenavigator';
 import CartNavigator from './Cartnavigator';
 import UserNavigator from './Usernavigator';
+import WishlistNavigator from './WishlistNavigator';
+import {Color} from '../assets/Color';
 
 const Main = () => {
   const getRouteNameHome = route => {
-    console.log('rr', route.name);
+    // console.log('rr', route.name);
 
     if (route.name === 'Cart') {
       return false;
@@ -35,10 +37,11 @@ const Main = () => {
   return (
     <Tab.Navigator
       // initialRouteName="Home"
+
       tabBarOptions={{
         keyboardHidesTabBar: true,
-        showLabel: true,
-        activeTintColor: '#e91e63',
+        // showLabel: true,
+        activeTintColor: Color.primary,
       }}>
       <Tab.Screen
         name="Home"
@@ -78,13 +81,17 @@ const Main = () => {
         }}
       />
 
-      {/* <Tab.Screen
-        name="Admin"
-        component={HomeNavigator}
+      <Tab.Screen
+        name="Wishlist"
+        component={WishlistNavigator}
         options={{
-          tabBarIcon: ({color}) => <Icon name="cog" color={color} size={30} />,
+          headerShown: false,
+          // tabBarStyle: {display: 'none'},
+          tabBarIcon: ({color}) => (
+            <Icon name="heart" color={color} size={30} />
+          ),
         }}
-      /> */}
+      />
 
       <Tab.Screen
         name="User"
