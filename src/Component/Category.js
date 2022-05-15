@@ -14,7 +14,7 @@ import {
 import {Color} from '../assets/Color';
 
 const Category = props => {
-  console.log('proops', props);
+  // console.log('proops', props);
   return (
     <ScrollView
       bounces={true}
@@ -22,11 +22,11 @@ const Category = props => {
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}>
       <View style={{display: 'flex', flexDirection: 'row'}}>
-        {/* <TouchableOpacity
+        <TouchableOpacity
           style={{
             display: 'flex',
-            backgroundColor:
-              props.active == -1 ? Color.primary : Color.secondary,
+            backgroundColor: 'gray',
+            // props.active == -1 ? Color.primary : Color.secondary,
             flexDirection: 'row',
             alignItems: 'center',
             borderColor: Color.primary,
@@ -57,16 +57,16 @@ const Category = props => {
           <Text style={{marginHorizontal: 4, color: Color.primaryText}}>
             All
           </Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         {props.categories.map(item => {
-          // console.log('item', item);
           return (
             <TouchableOpacity
               onPress={() => {
-                props.categoryFilter(item._id),
+                props.categoryFilter(item.id),
                   props.setActive(props.categories.indexOf(item));
               }}
+              // eslint-disable-next-line react-native/no-inline-styles
               style={{
                 display: 'flex',
                 backgroundColor:
@@ -93,11 +93,13 @@ const Category = props => {
                 }}
                 resizeMode="contain"
                 source={{
-                  uri: 'https://picsum.photos/id/237/536/354',
+                  uri: item
+                    ? item.icon
+                    : 'https://picsum.photos/id/237/536/354',
                 }}
               />
               <Text style={{marginHorizontal: 4, color: Color.primaryText}}>
-                category
+                {item.name}
               </Text>
             </TouchableOpacity>
           );

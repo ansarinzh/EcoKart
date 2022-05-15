@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import {
@@ -13,22 +14,11 @@ import {AddToCart, RemoveQtyItem} from '../Redux/Action/CartAction';
 import {Fonts} from '../assets/Fonts';
 
 const ProductCard = ({data, navigation}) => {
-  const [show, setShow] = useState(false);
-  const [count, setCount] = useState(0);
-
   const dispatch = useDispatch();
-
   const qty = useSelector(state => state.CartReducer);
-
-  // console.log('qty', qty);
-  // console.log('data', data);
-  // console.log(
-  //   '****************',
-  //   qty.carts.filter(item => item._id === data._id).length,
-  // );
   let quantity;
   qty.carts.map(q => {
-    if (q._id === data._id) {
+    if (q.id === data.id) {
       quantity = q.qty;
     }
   });
@@ -37,14 +27,13 @@ const ProductCard = ({data, navigation}) => {
   };
 
   const onAddToCart = data => {
-    // console.log('item', data);
     dispatch(AddToCart(data));
-    // setShow(true);
   };
   const removeAddToCart = data => {
     dispatch(RemoveQtyItem(data));
-    // count == 0 ? setShow(false) : setCount(prevCount => prevCount - 1);
   };
+
+  // console.log('data', data);
   return (
     <View style={styles.productCard}>
       <View
@@ -56,13 +45,15 @@ const ProductCard = ({data, navigation}) => {
         <Image
           style={styles.imgCard}
           source={{
-            uri: data.image,
+            uri: data
+              ? data.image
+              : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png',
           }}
         />
 
         <View style={{}}>
           <Text
-            onPress={() => navigation.navigate('Product Detail')}
+            onPress={() => navigation.navigate('Product Detail', {id: data.id})}
             style={styles.heading}>
             {data.name.length > 15
               ? data.name.substring(0, 15 - 3) + '.....'
@@ -82,11 +73,15 @@ const ProductCard = ({data, navigation}) => {
               // marginVertical:9
             }}>
             <Text
-              style={{textDecorationLine: 'line-through', marginVertical: 2, fontFamily: Fonts.primaryFont}}>
+              style={{
+                textDecorationLine: 'line-through',
+                marginVertical: 2,
+                fontFamily: Fonts.primaryFont,
+              }}>
               MRP
             </Text>
 
-            <Text style={{marginHorizontal: 9}}>₹{data.price}</Text>
+            <Text style={{marginHorizontal: 9}}>₹{data.mrp || 'MRP'}</Text>
           </View>
 
           <Text
@@ -94,43 +89,46 @@ const ProductCard = ({data, navigation}) => {
               fontSize: 15,
               alignSelf: 'flex-start',
               color: Color.secondary,
-              fontFamily:Fonts.primaryFont
+              fontFamily: Fonts.primaryFont,
             }}>
             {data.price} / {data.unit}
           </Text>
         </View>
       </View>
-      <View
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          marginRight: 15,
-        }}>
-        {quantity >= 1 ? (
-          // qty.carts.filter(item => item._id === data._id).length >= 1
-          <Counter
-            removeFromCart={() => removeAddToCart(data)}
-            count={quantity}
-            addToCart={() => onIncrement(data)}
-          />
-        ) : (
-          <Button
-            height="5%"
-            width="25%"
-            text="Add To Cart"
-            onclick={() => onAddToCart(data)}
-          />
-        )}
 
-        {/* {quantity === 0 && (
-          <Button
-            height="5%"
-            width="25%"
-            text="Add To Cart"
-            onclick={() => onAddToCart(data)}
-          />
-        )} */}
-      </View>
+      {data.countInStock > 0 ? (
+        <View
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginRight: 15,
+          }}>
+          {quantity >= 1 ? (
+            // qty.carts.filter(item => item._id === data._id).length >= 1
+            <Counter
+              removeFromCart={() => removeAddToCart(data)}
+              count={quantity}
+              addToCart={() => onIncrement(data)}
+            />
+          ) : (
+            <Button
+              height="5%"
+              width="25%"
+              text="Add To Cart"
+              onclick={() => onAddToCart(data)}
+            />
+          )}
+        </View>
+      ) : (
+        <Text
+          style={{
+            marginTop: 20,
+            color: 'red',
+            width: 100,
+          }}>
+          Currently Unavailable
+        </Text>
+      )}
     </View>
   );
 };
