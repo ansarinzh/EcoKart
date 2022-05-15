@@ -1,11 +1,45 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {Color} from '../assets/Color';
 import {Fonts} from '../assets/Fonts';
 import Button from '../Component/Button';
 import CheckoutProductItem from '../Component/CheckoutProductItem';
+import {useSelector} from 'react-redux';
+import {RemoveFromCart} from '../Redux/Action/CartAction';
+import baseUrl from '../assets/common/baseUrl';
+import axios from 'axios';
 
 const Checkout = props => {
+  // console.log('prtos', props?.route?.params?.billing);
+  const orderItems = useSelector(state => state.CartReducer.carts);
+  console.log('orderitems', orderItems);
+  const total = orderItems.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
+  // console.log('total', total);
+
+  const confirmOrder = () => {
+    console.log('hjjh');
+    const order = {
+      orderItems,
+      billing: props?.route?.params,
+    };
+
+    axios
+      .post(`${baseUrl}orders`, order)
+      .then(res => {
+        console.log('res', res);
+        if (res.status == 200 || res.status == 201) {
+          setTimeout(() => {
+            // props.clearCart(); todo add redux
+            props.navigation.navigate('Home');
+          }, 500);
+        }
+      })
+      .catch(error => {
+        console.log('err', error);
+      });
+  };
+
   return (
     <View
       style={{
@@ -20,9 +54,9 @@ const Checkout = props => {
           <Text style={{marginVertical: 5}}>Order items</Text>
 
           <FlatList
-            data={[1, 2]}
+            data={orderItems}
             showsVerticalScrollIndicator={false}
-            renderItem={() => <CheckoutProductItem />}
+            renderItem={data => <CheckoutProductItem data={data.item} />}
           />
         </View>
       </View>
@@ -36,10 +70,19 @@ const Checkout = props => {
               borderWidth: 1,
               borderRadius: 20,
             }}>
-            <Text style={{fontFamily: Fonts.headingFont}}>Address:</Text>
+            <Text style={{fontFamily: Fonts.headingFont}}>
+              Address:{''}
+              {props?.route?.params?.billing?.name ?? 'no name'}
+            </Text>
+
             <Text>
-              A-201, Burj Khalifa, Chandni Chowk, Nr. Kashimira, New York -
-              400521, Antartica
+              {props?.route?.params?.billing?.flat ?? 'no name'} ,
+              {props?.route?.params?.billing?.landmark ?? 'no name'} ,
+              {props?.route?.params?.billing?.pincode ?? 'no name'} ,
+            </Text>
+            <Text>
+              {' '}
+              Mobile: {props?.route?.params?.billing?.mobileNo ?? 'no name'} ,
             </Text>
           </View>
         </View>
@@ -75,16 +118,11 @@ const Checkout = props => {
               marginBottom: 10,
             }}>
             <Text style={{fontFamily: Fonts.headingFont}}>
-              Total Amount: 2354
+              Total Amount: {Number(total).toFixed(0)}
             </Text>
           </View>
         </View>
-        <Button
-          text="Done"
-          width="93%"
-          height="7%"
-          onclick={() => props.navigation.navigate('Home')}
-        />
+        <Button text="Done" width="93%" height="7%" onclick={confirmOrder} />
       </View>
     </View>
   );

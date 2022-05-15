@@ -48,6 +48,7 @@ const Home = props => {
       axios
         .get(`${baseURL}products`)
         .then(res => {
+          console.log('res', res);
           setProducts(res.data);
 
           setProductsFiltered(res.data);
@@ -104,7 +105,7 @@ const Home = props => {
 
   // Categories
   const changeCtg = ctg => {
-    console.log('ctg', ctg);
+    // console.log('ctg', ctg);
     {
       ctg === 'all'
         ? [setProductsCtg(initialState), setActive(true)]

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import {
@@ -14,6 +15,8 @@ import {Fonts} from '../assets/Fonts';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const CheckoutProductItem = ({data}) => {
+  console.log('datsssa', data);
+  // const totaloncard = Number(data.price * quantity).toFixed(0);
   return (
     <View>
       <View style={styles.productCard}>
@@ -28,7 +31,7 @@ const CheckoutProductItem = ({data}) => {
               }}
             />
             <View>
-              <Text style={styles.heading}>name</Text>
+              <Text style={styles.heading}>{data.name}</Text>
 
               <View
                 style={{
@@ -44,13 +47,13 @@ const CheckoutProductItem = ({data}) => {
                     marginVertical: 2,
                     fontFamily: Fonts.primaryFont,
                   }}>
-                  MRP{' '}
+                  MRP
                   <Text
                     style={{
                       marginHorizontal: 9,
                       fontFamily: Fonts.primaryFont,
                     }}>
-                    ₹{'data.price'}
+                    ₹{data.price}
                   </Text>
                 </Text>
               </View>
@@ -60,9 +63,32 @@ const CheckoutProductItem = ({data}) => {
                   fontFamily: Fonts.primaryFont,
                   color: Color.secondary,
                 }}>
-                {'data.price'} / {'data.unit'}
+                {data.price} / {data.unit}
               </Text>
             </View>
+            {/* <View
+              style={{
+                // backgroundColor: 'red',
+                display: 'flex',
+                flexDirection: 'row',
+                paddingVertical: 10,
+                alignItems: 'center',
+                justifyContent: 'center',
+                // marginlef: 10,
+              }}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontFamily: Fonts.headingFont,
+                  display: 'flex',
+                  alignSelf: 'flex-end',
+                  backgroundColor: 'red',
+
+                  // color: Color.secondary,
+                }}>
+                Total: {'totaloncard'}
+              </Text>
+            </View> */}
           </View>
         </>
       </View>
