@@ -9,11 +9,11 @@ const Billing = props => {
     name: '',
     mobileNo: '',
     flat: '',
-    area: '',
-    landmark: '',
+    // area: '',
+    // landmark: '',
     pincode: '',
-    town: '',
-    state: 'Maharashtra',
+    // town: '',
+    // state: 'Maharashtra',
   });
   const [err, setErr] = useState(false);
 
@@ -48,49 +48,56 @@ const Billing = props => {
   };
   // const []
   return (
-    <ScrollView>
-      <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
-        <Text style={{fontFamily: 'Rubik-SemiBold', fontSize: 18}}>
-          Add a new address
-        </Text>
-        <InputText
-          placeholder="Enter Full Name"
-          label="Full Name *"
-          onChangeText={name => handleChange('name', name)}
-        />
+    <View
+      style={{
+        // backgroundColor: 'red',
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'space-between',
+      }}>
+      <ScrollView>
+        <View style={{paddingHorizontal: 15, paddingVertical: 20}}>
+          <Text style={{fontFamily: 'Rubik-SemiBold', fontSize: 18}}>
+            Add a new address
+          </Text>
+          <InputText
+            placeholder="Enter Full Name"
+            label="Full Name *"
+            onChangeText={name => handleChange('name', name)}
+          />
 
-        {/* <InputText placeholder="Enter Mobile Number" label="Mobile Number" /> */}
-        <PhoneInput
-          label="Mobile Number *"
-          placeholder="Enter Mobile Number"
-          width="90%"
-          maxLength={10}
-          pv={0}
-          mv={10}
-          onChangeText={phone => handleChange('mobileNo', phone)}
-        />
-        <InputText
-          placeholder="Flat, House no., Building."
-          label="Flat, House no., Building *"
-          onChangeText={flat => handleChange('flat', flat)}
-        />
-        <InputText
+          {/* <InputText placeholder="Enter Mobile Number" label="Mobile Number" /> */}
+          <PhoneInput
+            label="Mobile Number *"
+            placeholder="Enter Mobile Number"
+            width="90%"
+            maxLength={10}
+            pv={0}
+            mv={10}
+            onChangeText={phone => handleChange('mobileNo', phone)}
+          />
+          <InputText
+            placeholder="Flat, House no., Building."
+            label="Flat, House no., Building *"
+            onChangeText={flat => handleChange('flat', flat)}
+          />
+          {/* <InputText
           placeholder="Area, Street, Sector, Village"
           label="Area, Street, Sector, Village *"
           onChangeText={area => handleChange('area', area)}
-        />
-        <InputText
-          placeholder="Enter Landmark"
-          label="Landmark *"
-          onChangeText={landmark => handleChange('landmark', landmark)}
-        />
-        <InputText
-          placeholder="Enter Pin Code"
-          label="Pincode *"
-          keyBoarType="numeric"
-          onChangeText={pincode => handleChange('pincode', pincode)}
-        />
-        <InputText
+        /> */}
+          <InputText
+            placeholder="Enter Landmark"
+            label="Landmark *"
+            onChangeText={landmark => handleChange('landmark', landmark)}
+          />
+          <InputText
+            placeholder="Enter Pin Code"
+            label="Pincode *"
+            keyBoarType="numeric"
+            onChangeText={pincode => handleChange('pincode', pincode)}
+          />
+          {/* <InputText
           placeholder="Enter Town/City"
           label="Town/City *"
           onChangeText={town => handleChange('town', town)}
@@ -100,17 +107,20 @@ const Billing = props => {
           label="State *"
           value={billing.state}
           onChangeText={state => handleChange('state', state)}
-        />
-        <View style={{marginVertical: 10}}>
+        /> */}
+        </View>
+        <View style={{marginVertical: 35, alignItems: 'center'}}>
           <Button
             text="Proceed"
             width="95%"
             height="7%"
-            onclick={() => props.navigation.navigate('checkout')}
+            onclick={() =>
+              props.navigation.navigate('checkout', {billing: billing})
+            }
           />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
