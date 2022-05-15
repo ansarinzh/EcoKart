@@ -1,60 +1,91 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
+import {Color} from '../assets/Color';
+import {Fonts} from '../assets/Fonts';
 import Button from '../Component/Button';
-import InputText from '../Component/InputText';
-import PhoneInput from '../Component/PhoneInput';
+import CheckoutProductItem from '../Component/CheckoutProductItem';
 
 const Checkout = props => {
-  // const []
   return (
     <View
       style={{
-        justifyContent: 'space-between',
+        padding: 15,
+        //  backgroundColor: 'red',
         display: 'flex',
-
+        justifyContent: 'space-between',
         flex: 1,
       }}>
-      <ScrollView>
+      <View style={{height: 375}}>
+        <View style={{marginVertical: 10}}>
+          <Text style={{marginVertical: 5}}>Order items</Text>
+
+          <FlatList
+            data={[1, 2]}
+            showsVerticalScrollIndicator={false}
+            renderItem={() => <CheckoutProductItem />}
+          />
+        </View>
+      </View>
+      <View style={{}}>
+        <View style={{marginVertical: 12}}>
+          <Text style={{marginVertical: 10}}>Shipping To</Text>
+          <View
+            style={{
+              padding: 10,
+              borderColor: Color.primary,
+              borderWidth: 1,
+              borderRadius: 20,
+            }}>
+            <Text style={{fontFamily: Fonts.headingFont}}>Address:</Text>
+            <Text>
+              A-201, Burj Khalifa, Chandni Chowk, Nr. Kashimira, New York -
+              400521, Antartica
+            </Text>
+          </View>
+        </View>
+        <Text style={{marginVertical: 5}}>Paymet method</Text>
         <View
           style={{
-            paddingHorizontal: 15,
-            paddingVertical: 20,
+            marginVertical: 5,
+            // backgroundColor: 'red',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
           }}>
-          <Text style={{fontFamily: 'Rubik-SemiBold', fontSize: 18}}>
-            Add a new address
-          </Text>
-          <InputText placeholder="Enter Full Name" label="Full Name" />
-          {/* <InputText placeholder="Enter Mobile Number" label="Mobile Number" /> */}
-          <PhoneInput
-            label="Mobile Number"
-            placeholder="Enter Mobile Number"
-            width="90%"
-            maxLength={10}
-            pv={0}
-            mv={10}
-          />
-          <InputText
-            placeholder="Flat, House no., Building."
-            label="Flat, House no., Building"
-          />
-          {/* <InputText
-          placeholder="Area, Street, Sector, Village"
-          label="Area, Street, Sector, Village"
-        /> */}
-          <InputText placeholder="Enter Landmark" label="Landmark" />
-          <InputText
-            placeholder="Enter Pin Code"
-            label="Pincode"
-            keyBoarType="numeric"
-          />
-          {/* <InputText placeholder="Enter Town/City" label="Town/City" />
-        <InputText placeholder="Enter State" label="State" /> */}
+          <View
+            style={{
+              padding: 10,
+              borderColor: Color.primary,
+              borderWidth: 1,
+              borderRadius: 10,
+              alignSelf: 'flex-start',
+              marginBottom: 10,
+            }}>
+            <Text style={{fontFamily: Fonts.headingFont}}>
+              Cash on delivery
+            </Text>
+          </View>
+          <View
+            style={{
+              padding: 10,
+              borderColor: Color.primary,
+              borderWidth: 1,
+              borderRadius: 10,
+              alignSelf: 'flex-start',
+              marginBottom: 10,
+            }}>
+            <Text style={{fontFamily: Fonts.headingFont}}>
+              Total Amount: 2354
+            </Text>
+          </View>
         </View>
-        <View
-          style={{marginVertical: 30, display: 'flex', alignItems: 'center'}}>
-          <Button text="Proceed" width="93%" height="7%" />
-        </View>
-      </ScrollView>
+        <Button
+          text="Done"
+          width="93%"
+          height="7%"
+          onclick={() => props.navigation.navigate('Home')}
+        />
+      </View>
     </View>
   );
 };
