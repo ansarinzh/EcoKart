@@ -51,7 +51,7 @@ const CartCard = ({data}) => {
             <View>
               <Text style={styles.heading}>
                 {data.name.length > 15
-                  ? data.name.substring(0, 15 - 3) + '.....'
+                  ? data.name.substring(0, 15 - 3) + '...'
                   : data.name}
               </Text>
 
@@ -121,7 +121,7 @@ const CartCard = ({data}) => {
               <Text
                 style={{
                   fontSize: 15,
-                fontFamily: Fonts.headingFont,
+                  fontFamily: Fonts.headingFont,
 
                   // backgroundColor: 'red',
 
