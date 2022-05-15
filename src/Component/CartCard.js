@@ -19,8 +19,8 @@ const CartCard = ({data}) => {
   const cartItems = useSelector(state => state.CartReducer);
 
   let quantity;
-  cartItems.carts.map(q => {
-    if (q._id === data._id) {
+  cartItems?.carts?.map(q => {
+    if (q.id === data.id) {
       quantity = q.qty;
     }
   });

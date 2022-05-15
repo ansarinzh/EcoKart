@@ -5,12 +5,14 @@ import {Color} from '../assets/Color';
 import {Fonts} from '../assets/Fonts';
 import Button from '../Component/Button';
 import CheckoutProductItem from '../Component/CheckoutProductItem';
-import {useSelector} from 'react-redux';
-import {RemoveFromCart} from '../Redux/Action/CartAction';
+import {useSelector, useDispatch} from 'react-redux';
+import {ClearCart} from '../Redux/Action/CartAction';
+
 import baseUrl from '../assets/common/baseUrl';
 import axios from 'axios';
 
 const Checkout = props => {
+  const dispatch = useDispatch();
   // console.log('prtos', props?.route?.params?.billing);
   const orderItems = useSelector(state => state.CartReducer.carts);
   console.log('orderitems', orderItems);
@@ -18,7 +20,7 @@ const Checkout = props => {
   // console.log('total', total);
 
   const confirmOrder = () => {
-    console.log('hjjh');
+    // console.log('hjjh');
     const order = {
       orderItems,
       billing: props?.route?.params,
@@ -30,7 +32,7 @@ const Checkout = props => {
         console.log('res', res);
         if (res.status == 200 || res.status == 201) {
           setTimeout(() => {
-            // props.clearCart(); todo add redux
+            // dispatch(ClearCart());
             props.navigation.navigate('Home');
           }, 500);
         }

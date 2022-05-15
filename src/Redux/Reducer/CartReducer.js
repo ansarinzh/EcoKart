@@ -1,12 +1,15 @@
-import {ADD_TO_CART, REMOVE_FROM_CART, REMOVE_QTY} from '../Constants';
+import {
+  ADD_TO_CART,
+  CLEAR_CART,
+  REMOVE_FROM_CART,
+  REMOVE_QTY,
+} from '../Constants';
 
 const initialState = {
   carts: [],
 };
 
 export const CartReducer = (state = initialState, action) => {
-  console.log('action', action);
-
   switch (action.type) {
     // *************** To add item into the cart **************
 
@@ -47,6 +50,9 @@ export const CartReducer = (state = initialState, action) => {
           carts: data,
         };
       }
+
+    case CLEAR_CART:
+      return {state};
     default:
       return state;
   }

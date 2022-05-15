@@ -17,7 +17,7 @@ const ProductCard = ({data, navigation}) => {
   const dispatch = useDispatch();
   const qty = useSelector(state => state.CartReducer);
   let quantity;
-  qty.carts.map(q => {
+  qty?.carts?.map(q => {
     if (q.id === data.id) {
       quantity = q.qty;
     }

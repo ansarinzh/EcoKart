@@ -6,11 +6,11 @@ import Header from '../Component/Header';
 import {useSelector, useDispatch} from 'react-redux';
 import {RemoveFromCart} from '../Redux/Action/CartAction';
 import {Fonts} from '../assets/Fonts';
-import { Color } from '../assets/Color';
+import {Color} from '../assets/Color';
 
 const CartItem = props => {
   const cartItem = useSelector(state => state.CartReducer.carts);
-  const total = cartItem.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
+  const total = cartItem?.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
   return (
     <>
       {cartItem.length > 0 ? (
