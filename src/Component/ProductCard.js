@@ -34,6 +34,9 @@ const ProductCard = ({data, navigation}) => {
   };
 
   // console.log('data', data);
+  const Discount = data.mrp - data.price;
+  const totalDiscount = Number((Discount / data.mrp) * 100).toFixed(0);
+  // console.log('Discount', totalDiscount);
   return (
     <View style={styles.productCard}>
       <View
@@ -41,7 +44,7 @@ const ProductCard = ({data, navigation}) => {
           display: 'flex',
           flexDirection: 'row',
         }}>
-        <Label discount={50} />
+        <Label discount={totalDiscount} />
         <Image
           style={styles.imgCard}
           source={{

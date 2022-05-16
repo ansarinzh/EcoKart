@@ -95,7 +95,7 @@ const Main = () => {
 
       <Tab.Screen
         name="User"
-        component={UserNavigator}
+        component={WishlistNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={30} />,
