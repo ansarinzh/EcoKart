@@ -55,7 +55,11 @@ export const CartReducer = (state = initialState, action) => {
       }
 
     case CLEAR_CART:
-      return state;
+      let returnData = {
+        ...state,
+        carts: initialState.carts,
+      };
+      return returnData;
 
     case CURRENT_USER_SET:
       return {user: action.payload};

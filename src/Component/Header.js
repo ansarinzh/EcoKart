@@ -38,7 +38,7 @@ const Header = ({
   useEffect(() => {
     AsyncStorage.getItem('token')
       .then(res => {
-        console.log('res', res);
+        console.log('res_token', res);
       })
       .catch(err => console.log('err', err));
   }, []);

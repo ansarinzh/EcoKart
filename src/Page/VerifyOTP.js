@@ -46,8 +46,7 @@ const VerifyOTP = props => {
     })
       .then(async res => {
         await AsyncStorage.setItem('token', res?.data?.data?._id);
-        // dispatch(currentUserSet(true));
-        props.navigation.navigate('Home');
+        dispatch(currentUserSet('user'));
       })
       .catch(err => console.log('err', err));
   };
