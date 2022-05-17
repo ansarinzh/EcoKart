@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Color} from '../assets/Color';
 import Iconleft from 'react-native-vector-icons/AntDesign';
-
-import {useSelector} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSelector, useDispatch} from 'react-redux';
+import {currentUserSet} from '../Redux/Action/CartAction';
 
 const Header = ({
   name,
@@ -18,7 +19,29 @@ const Header = ({
   cartIcon,
 }) => {
   const CartLength = useSelector(state => state.CartReducer);
+  // console.log('ddd', CartLength);
+  // const token = AsyncStorage.getItem('token');
+  // console.log('token', token);
+  const dispatch = useDispatch();
+  const logOut = async () => {
+    AsyncStorage.clear();
 
+    dispatch(currentUserSet(false));
+    // console.log('asf');
+    // if () {
+
+    // }
+    // await AsyncStorage.clear();
+    // console.log('ggg', token);
+  };
+
+  useEffect(() => {
+    AsyncStorage.getItem('token')
+      .then(res => {
+        console.log('res_token', res);
+      })
+      .catch(err => console.log('err', err));
+  }, []);
   return (
     <View
       // eslint-disable-next-line react-native/no-inline-styles
@@ -81,12 +104,14 @@ const Header = ({
         </View>
       ) : null}
 
-      <View style={{marginHorizontal: 10}}>
+      <View style={{display: 'flex', flexDirection: 'row'}}>
+        <Icon onPress={logOut} name="user" color={Color.primary} size={30} />
         <Icon
           onPress={() => navigation.navigate('cart')}
           name={cartIcon}
           color={Color.primary}
           size={30}
+          style={{marginLeft: 10}}
         />
       </View>
     </View>

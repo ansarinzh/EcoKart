@@ -17,8 +17,17 @@ import InputText from '../Component/InputText';
 import PasswordInput from '../Component/PassInput';
 import PhoneInput from '../Component/PhoneInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import baseURL from '../assets/common/baseUrl';
+
+import {useDispatch, useSelector} from 'react-redux';
+import {currentUserSet} from '../Redux/Action/CartAction';
 
 const VerifyOTP = props => {
+  const dispatch = useDispatch();
+  const CartLength = useSelector(state => state.CartReducer);
+  console.log('ddd', CartLength);
+  // console.log('propds', props?.route?.params?.phoneNo);
   const [otp1, setOtp1] = useState('');
   const [otp2, setOtp2] = useState('');
   const [otp3, setOtp3] = useState('');
@@ -30,8 +39,16 @@ const VerifyOTP = props => {
   const otp4Ref = useRef('');
 
   const setTokenAfterLogin = () => {
-    console.log('ugik');
-    AsyncStorage.setItem('token', 'token');
+    axios({
+      method: 'POST',
+      url: `${baseURL}verifyOtp`,
+      data: {phoneNo: props?.route?.params?.phoneNo, otp: 123456},
+    })
+      .then(async res => {
+        await AsyncStorage.setItem('token', res?.data?.data?._id);
+        dispatch(currentUserSet('user'));
+      })
+      .catch(err => console.log('err', err));
   };
 
   return (
@@ -75,13 +92,13 @@ const VerifyOTP = props => {
                 }}>
                 Enter the OTP sent to
                 <Text style={{fontWeight: '800', fontSize: 15}}>
-                  +91-9963258741
+                  +91-{props?.route?.params?.phoneNo}
                 </Text>
               </Text>
             </View>
 
             <View style={{marginHorizontal: 30}}>
-              <Text>Enter OTP</Text>
+              <Text>Enter OTP </Text>
               <View
                 style={{
                   marginVertical: 10,

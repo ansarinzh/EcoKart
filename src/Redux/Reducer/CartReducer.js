@@ -1,18 +1,24 @@
-import {ADD_TO_CART, REMOVE_FROM_CART, REMOVE_QTY} from '../Constants';
+import {
+  ADD_TO_CART,
+  CLEAR_CART,
+  CURRENT_USER_SET,
+  REMOVE_FROM_CART,
+  REMOVE_QTY,
+} from '../Constants';
 
 const initialState = {
   carts: [],
+  user: '',
 };
 
 export const CartReducer = (state = initialState, action) => {
-  console.log('action', action);
-
+  console.log('actionreducer', action);
   switch (action.type) {
     // *************** To add item into the cart **************
 
     case ADD_TO_CART:
       const itemIndex = state.carts.findIndex(
-        item => item.id === action.payload.id,
+        item => item.id === action?.payload.id,
       );
       // console.log('iterm', itemIndex);
       if (itemIndex >= 0) {
@@ -47,6 +53,16 @@ export const CartReducer = (state = initialState, action) => {
           carts: data,
         };
       }
+
+    case CLEAR_CART:
+      let returnData = {
+        ...state,
+        carts: initialState.carts,
+      };
+      return returnData;
+
+    case CURRENT_USER_SET:
+      return {user: action.payload};
     default:
       return state;
   }

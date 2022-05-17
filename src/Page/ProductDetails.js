@@ -60,8 +60,8 @@ const ProductDetails = props => {
             // HeaderName="Home"
             screenName="Deatils screen"
             iconName="arrowleft"
-            cartIcon="heart-o"
-            noQty="noQty"
+            // cartIcon="heart-o"
+            // noQty="noQty"
           />
           <View>
             <Text
