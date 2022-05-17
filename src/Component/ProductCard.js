@@ -17,7 +17,7 @@ const ProductCard = ({data, navigation}) => {
   const dispatch = useDispatch();
   const qty = useSelector(state => state.CartReducer);
   let quantity;
-  qty.carts.map(q => {
+  qty?.carts?.map(q => {
     if (q.id === data.id) {
       quantity = q.qty;
     }
@@ -34,6 +34,9 @@ const ProductCard = ({data, navigation}) => {
   };
 
   // console.log('data', data);
+  const Discount = data.mrp - data.price;
+  const totalDiscount = Number((Discount / data.mrp) * 100).toFixed(0);
+  // console.log('Discount', totalDiscount);
   return (
     <View style={styles.productCard}>
       <View
@@ -41,7 +44,7 @@ const ProductCard = ({data, navigation}) => {
           display: 'flex',
           flexDirection: 'row',
         }}>
-        <Label discount={50} />
+        <Label discount={totalDiscount} />
         <Image
           style={styles.imgCard}
           source={{
@@ -148,6 +151,7 @@ const styles = StyleSheet.create({
     borderColor: Color.primary,
     // borderWidth: 0.5,
     justifyContent: 'space-between',
+    // marginBottom
   },
   imgCard: {
     marginHorizontal: wp('2%'),
