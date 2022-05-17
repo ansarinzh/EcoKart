@@ -3,10 +3,11 @@ import {
   REMOVE_FROM_CART,
   REMOVE_QTY,
   CLEAR_CART,
+  CURRENT_USER_SET,
 } from '../Constants';
 
 export const AddToCart = payload => {
-  // console.log("ppp", payload);
+  console.log('ppp', payload);
   return {
     type: ADD_TO_CART,
     payload,
@@ -28,10 +29,16 @@ export const RemoveQtyItem = item => {
   };
 };
 export const ClearCart = () => {
-  console.log('====================================');
-
-  console.log('====================================');
+  console.log("lkk");
   return {
     type: CLEAR_CART,
+  };
+};
+
+export const currentUserSet = value => {
+  console.log('actionvalue', value);
+  return {
+    payload: value,
+    type: CURRENT_USER_SET,
   };
 };

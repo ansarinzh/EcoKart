@@ -32,7 +32,7 @@ const Checkout = props => {
         console.log('res', res);
         if (res.status == 200 || res.status == 201) {
           setTimeout(() => {
-            // dispatch(ClearCart());
+            dispatch(ClearCart());
             props.navigation.navigate('Home');
           }, 500);
         }
