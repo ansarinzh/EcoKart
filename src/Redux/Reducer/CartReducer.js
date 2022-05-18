@@ -54,6 +54,7 @@ export const CartReducer = (state = initialState, action) => {
         };
       }
 
+    // eslint-disable-next-line no-fallthrough
     case CLEAR_CART:
       let returnData = {
         ...state,
@@ -62,7 +63,11 @@ export const CartReducer = (state = initialState, action) => {
       return returnData;
 
     case CURRENT_USER_SET:
-      return {user: action.payload};
+      let returnUSer = {
+        ...state,
+        user: action.payload,
+      };
+      return returnUSer;
     default:
       return state;
   }

@@ -16,7 +16,9 @@ const Checkout = props => {
   // console.log('prtos', props?.route?.params?.billing);
   const orderItems = useSelector(state => state.CartReducer.carts);
   console.log('orderitems', orderItems);
-  const total = orderItems.length > 0 && orderItems.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
+  const total =
+    orderItems.length > 0 &&
+    orderItems.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
   // console.log('total', total);
 
   const confirmOrder = () => {
@@ -24,6 +26,7 @@ const Checkout = props => {
     const order = {
       orderItems,
       billing: props?.route?.params,
+      // userId: '',
     };
 
     axios

@@ -2,13 +2,16 @@ import React from 'react';
 
 import {Provider} from 'react-redux';
 import UserSwitch from './src/Navigation/UserSwitch';
-
-import store from './src/Redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import persitValue from './src/Redux/store';
 
 const App = () => {
+  const {store, persistor} = persitValue();
   return (
     <Provider store={store}>
-      <UserSwitch />
+      <PersistGate loading={null} persistor={persistor}>
+        <UserSwitch />
+      </PersistGate>
     </Provider>
   );
 };
