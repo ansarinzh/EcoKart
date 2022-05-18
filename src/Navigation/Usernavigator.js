@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from '../Page/Login';
-import VerifyOTP from '../Page/VerifyOTP';
+import Account from '../Page/Account';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,10 +10,10 @@ function UserStack() {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen
         options={{headerShown: false}}
-        name="login"
-        component={Login}
+        name="account"
+        component={Account}
       />
-      <Stack.Screen name="verifyotp" component={VerifyOTP} />
+      {/* <Stack.Screen name="verifyotp" component={VerifyOTP} /> */}
     </Stack.Navigator>
   );
 }
