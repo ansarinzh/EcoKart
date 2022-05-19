@@ -26,7 +26,7 @@ const Header = ({
   const logOut = async () => {
     AsyncStorage.clear();
 
-    dispatch(currentUserSet(false));
+    dispatch(currentUserSet('false'));
     // console.log('asf');
     // if () {
 
@@ -105,7 +105,6 @@ const Header = ({
       ) : null}
 
       <View style={{display: 'flex', flexDirection: 'row'}}>
-        <Icon onPress={logOut} name="user" color={Color.primary} size={30} />
         <Icon
           onPress={() => navigation.navigate('cart')}
           name={cartIcon}

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {Color} from '../assets/Color';
 import {Fonts} from '../assets/Fonts';
@@ -7,16 +7,20 @@ import Button from '../Component/Button';
 import CheckoutProductItem from '../Component/CheckoutProductItem';
 import {useSelector, useDispatch} from 'react-redux';
 import {ClearCart} from '../Redux/Action/CartAction';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import baseUrl from '../assets/common/baseUrl';
 import axios from 'axios';
 
 const Checkout = props => {
   const dispatch = useDispatch();
+  const [tokenId, setTokenId] = useState('');
   // console.log('prtos', props?.route?.params?.billing);
   const orderItems = useSelector(state => state.CartReducer.carts);
   console.log('orderitems', orderItems);
-  const total = orderItems.length > 0 && orderItems.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
+
+  const total =
+    orderItems.length > 0 &&
+    orderItems.map(q => q.qty * q.price).reduce((a, b) => a + b, 0);
   // console.log('total', total);
 
   const confirmOrder = () => {
@@ -24,6 +28,7 @@ const Checkout = props => {
     const order = {
       orderItems,
       billing: props?.route?.params,
+      tokenId: tokenId,
     };
 
     axios
@@ -42,6 +47,21 @@ const Checkout = props => {
       });
   };
 
+  useEffect(() => {
+    AsyncStorage.getItem('token')
+      .then(res => {
+        if (res) {
+          setTokenId(res);
+        } else {
+          setTokenId(null);
+        }
+
+        // console.log('res_token_id', res);
+      })
+      .catch(err => console.log('err', err));
+  }, []);
+
+  console.log('tokenId', tokenId);
   return (
     <View
       style={{

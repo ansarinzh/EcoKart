@@ -3,11 +3,25 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {Color} from '../assets/Color';
 import {Fonts} from '../assets/Fonts';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSelector, useDispatch} from 'react-redux';
+import {currentUserSet} from '../Redux/Action/CartAction';
+const MenuItem = ({name, icon, onPress, navigation}) => {
+  const dispatch = useDispatch();
+  const NavigationHandelr = () => {
+    console.log('name', name);
 
-const MenuItem = ({name, icon, onPress}) => {
+    if (name == 'My Orders') {
+      navigation.navigate('order');
+    } else if (name == 'Logout') {
+      AsyncStorage.clear();
+      dispatch(currentUserSet('false'));
+    }
+  };
+
   return (
     <View>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={NavigationHandelr}>
         <View
           style={{
             display: 'flex',

@@ -16,7 +16,7 @@ import {Fonts} from '../assets/Fonts';
 const ProductCard = ({data, navigation}) => {
   const dispatch = useDispatch();
   const qty = useSelector(state => state.CartReducer);
-  console.log("qty", qty);
+  // console.log('qty', qty);
   let quantity;
   qty?.carts?.map(q => {
     if (q.id === data.id) {
@@ -45,7 +45,8 @@ const ProductCard = ({data, navigation}) => {
           display: 'flex',
           flexDirection: 'row',
         }}>
-        <Label discount={totalDiscount} />
+        {totalDiscount >= 20 ? <Label discount={totalDiscount} /> : null}
+
         <Image
           style={styles.imgCard}
           source={{

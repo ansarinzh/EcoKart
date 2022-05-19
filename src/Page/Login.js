@@ -14,32 +14,24 @@ import PhoneInput from '../Component/PhoneInput';
 
 const Login = props => {
   const [phoneNo, setPhoneNo] = useState('');
-  console.log('af', phoneNo);
+  // console.log('af', phoneNo);
 
   const sendOtp = () => {
-    axios({method: 'POST', url: `${baseURL}sendOtp`, data: {phoneNo: phoneNo}})
+    axios({
+      method: 'POST',
+      url: `${baseURL}sendOtp`,
+      data: {phoneNo: '8850885962'},
+    })
       .then(res => {
         console.log('res', res.data.message);
 
         if (res.data.message) {
-          props.navigation.navigate('verifyotp', {phoneNo});
+          props.navigation.navigate('verifyOtp', {phoneNo: '8850885962'});
           // console.log('res');
         }
       })
       .catch(err => console.log('err', err));
   };
-
-  // axios
-  //   .get(`${baseURL}categories`)
-  //   .then(res => {
-  //     // console.log('resCate', res);
-  //     setCategories(res.data);
-  //   })
-  //   .catch(error => {
-  //     console.log('Api call error');
-  //   });
-
-  // () => props.navigation.navigate('verifyotp', {phoneNo})
   return (
     <>
       <TouchableWithoutFeedback
