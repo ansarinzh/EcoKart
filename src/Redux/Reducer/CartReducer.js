@@ -4,6 +4,7 @@ import {
   CURRENT_USER_SET,
   REMOVE_FROM_CART,
   REMOVE_QTY,
+  TOKEN_ID,
 } from '../Constants';
 
 const initialState = {
@@ -12,7 +13,6 @@ const initialState = {
 };
 
 export const CartReducer = (state = initialState, action) => {
-  console.log('actionreducer', action);
   switch (action.type) {
     // *************** To add item into the cart **************
 
@@ -68,6 +68,7 @@ export const CartReducer = (state = initialState, action) => {
         user: action.payload,
       };
       return returnUSer;
+
     default:
       return state;
   }

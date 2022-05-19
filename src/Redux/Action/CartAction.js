@@ -4,6 +4,7 @@ import {
   REMOVE_QTY,
   CLEAR_CART,
   CURRENT_USER_SET,
+  TOKEN_ID,
 } from '../Constants';
 
 export const AddToCart = payload => {
@@ -29,14 +30,14 @@ export const RemoveQtyItem = item => {
   };
 };
 export const ClearCart = () => {
-  console.log("lkk");
+  console.log('lkk');
   return {
     type: CLEAR_CART,
   };
 };
 
 export const currentUserSet = value => {
-  console.log('actionvalue', value);
+  console.log('value', value);
   return {
     payload: value,
     type: CURRENT_USER_SET,

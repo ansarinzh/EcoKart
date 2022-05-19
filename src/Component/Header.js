@@ -105,12 +105,6 @@ const Header = ({
       ) : null}
 
       <View style={{display: 'flex', flexDirection: 'row'}}>
-        <Iconleft
-          onPress={logOut}
-          name="logout"
-          color={Color.primary}
-          size={28}
-        />
         <Icon
           onPress={() => navigation.navigate('cart')}
           name={cartIcon}
