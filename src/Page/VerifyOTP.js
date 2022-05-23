@@ -6,6 +6,7 @@ import {
   Keyboard,
   Image,
   TextInput,
+  StyleSheet,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -55,32 +56,16 @@ const VerifyOTP = props => {
     <>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View
-          style={{
-            paddingVertical: 10,
-            paddingHorizontal: 10,
-            // backgroundColor: 'yellow',
-            display: 'flex',
-            flex: 1,
-            justifyContent: 'space-between',
-          }}>
+          style={Style.cardView}>
           <View>
             <Image
-              style={{
-                height: 250,
-                width: 250,
-                alignSelf: 'center',
-              }}
+              style={Style.imgCard}
               source={require('../assets/images/OTP-bro.png')}
             />
 
             <View style={{marginVertical: 20}}>
               <Text
-                style={{
-                  alignSelf: 'center',
-                  fontSize: 20,
-                  fontWeight: '600',
-                  marginVertical: 5,
-                }}>
+                style={Style.textStyle}>
                 OTP Verification
               </Text>
               <Text
@@ -91,29 +76,18 @@ const VerifyOTP = props => {
                   marginVertical: 5,
                 }}>
                 Enter the OTP sent to
-                <Text style={{fontWeight: '800', fontSize: 15}}>
+                <Text style={{fontWeight: '800', fontSize: hp('2%')}}>
                   +91-{props?.route?.params?.phoneNo}
                 </Text>
               </Text>
             </View>
 
-            <View style={{marginHorizontal: 30}}>
+            <View style={{marginHorizontal: hp('3.5%')}}>
               <Text>Enter OTP </Text>
               <View
-                style={{
-                  marginVertical: 10,
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}>
+                style={Style.otpInputView}>
                 <TextInput
-                  style={{
-                    width: wp('15%'),
-                    borderColor: Color.primary,
-                    borderWidth: 1,
-                    borderRadius: 10,
-                    textAlign: 'center',
-                  }}
+                  style={Style.otpTextInput}
                   ref={otp1Ref}
                   keyboardType="number-pad"
                   maxLength={1}
@@ -125,13 +99,7 @@ const VerifyOTP = props => {
                   }}
                 />
                 <TextInput
-                  style={{
-                    width: wp('15%'),
-                    borderRadius: 10,
-                    borderColor: Color.primary,
-                    borderWidth: 1,
-                    textAlign: 'center',
-                  }}
+                  style={Style.otpTextInput}
                   ref={otp2Ref}
                   keyboardType="number-pad"
                   maxLength={1}
@@ -143,13 +111,7 @@ const VerifyOTP = props => {
                   }}
                 />
                 <TextInput
-                  style={{
-                    width: wp('15%'),
-                    borderColor: Color.primary,
-                    borderWidth: 1,
-                    borderRadius: 10,
-                    textAlign: 'center',
-                  }}
+                  style={Style.otpTextInput}
                   ref={otp3Ref}
                   keyboardType="number-pad"
                   maxLength={1}
@@ -161,13 +123,7 @@ const VerifyOTP = props => {
                   }}
                 />
                 <TextInput
-                  style={{
-                    width: wp('15%'),
-                    borderColor: Color.primary,
-                    borderWidth: 1,
-                    borderRadius: 10,
-                    textAlign: 'center',
-                  }}
+                  style={Style.otpTextInput}
                   ref={otp4Ref}
                   keyboardType="number-pad"
                   maxLength={1}
@@ -177,7 +133,7 @@ const VerifyOTP = props => {
             </View>
           </View>
 
-          <View style={{marginVertical: 15, alignSelf: 'center'}}>
+          <View style={{marginVertical: hp('1.2%'), alignSelf: 'center'}}>
             <Button
               text="Verify OTP"
               height="7%"
@@ -191,4 +147,37 @@ const VerifyOTP = props => {
   );
 };
 
+const Style = StyleSheet.create({
+  cardView:{
+    paddingVertical: hp('1%'),
+    paddingHorizontal: wp('3%'),
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  imgCard:{
+    height: hp('32%'),
+    width: wp('65%'),
+    alignSelf: 'center',
+  },
+  textStyle:{
+    alignSelf: 'center',
+    fontSize: hp('2.5%'),
+    fontWeight: '600',
+    marginVertical: hp('0.8%'),
+  },
+  otpInputView:{
+    marginVertical: hp('1.2%'),
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  otpTextInput:{
+    width: wp('15%'),
+    borderColor: Color.primary,
+    borderWidth: 1,
+    borderRadius: 10,
+    textAlign: 'center',
+  }
+})
 export default VerifyOTP;

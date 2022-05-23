@@ -1,33 +1,23 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, StyleSheet} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+
+
+
 const OrderItems = ({data}) => {
-  console.log('dataaa', data);
+  // console.log('dataaa', data);
   return (
-    <View
-      style={{
-        backgroundColor: 'white',
-        borderRadius: 20,
-        elevation: 6,
-        padding: 13,
-        marginVertical: 10,
-      }}>
+    <View style={Styles.orderCard}>
       <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: 10,
-        }}>
+        style={Styles.orderTopDetail}>
         <View>
-          <Text style={{fontSize: 18}}>Order Name </Text>
-          <Text style={{fontSize: 18}}>order date and details</Text>
-          <Text style={{fontSize: 18}}>Order ID:135246 </Text>
+          <Text style={Styles.orderFont}>Order Name </Text>
+          <Text style={Styles.orderFont}>order date and details</Text>
+          <Text style={Styles.orderFont}>Order ID:135246 </Text>
         </View>
 
         <View>
@@ -47,15 +37,7 @@ const OrderItems = ({data}) => {
       </View>
 
       <View
-        style={{
-          marginTop: 10,
-          //   backgroundColor: 'red',
-          display: 'flex',
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          //   margin: 10,
-          padding: 10,
-        }}>
+        style={Styles.orderBtmDetail}>
         <View>
           <Text>Total Amount</Text>
           <Text>RS.{data.totalPrice}</Text>
@@ -73,4 +55,30 @@ const OrderItems = ({data}) => {
   );
 };
 
+const Styles = StyleSheet.create({
+  orderCard: {
+    backgroundColor: 'white',
+    borderRadius: 20,
+    elevation: 6,
+    padding: hp('1.85%'),
+    marginVertical: hp("1.4%"),
+  },
+  orderTopDetail:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: wp("2.8%"),
+  },
+  orderFont:{
+    fontSize: wp("4.5%")
+  },
+  orderBtmDetail: {
+    marginTop: hp('1.5%'),
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    padding: wp('2.5%'),
+  }
+});
 export default OrderItems;

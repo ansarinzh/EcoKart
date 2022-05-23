@@ -1,11 +1,15 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {View, Text, TouchableOpacity,StyleSheet} from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import {Color} from '../assets/Color';
 import {Fonts} from '../assets/Fonts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector, useDispatch} from 'react-redux';
 import {currentUserSet} from '../Redux/Action/CartAction';
+
 const MenuItem = ({name, icon, onPress, navigation}) => {
   const dispatch = useDispatch();
   const NavigationHandelr = () => {
@@ -23,23 +27,10 @@ const MenuItem = ({name, icon, onPress, navigation}) => {
     <View>
       <TouchableOpacity onPress={NavigationHandelr}>
         <View
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            height: hp('7%'),
-            borderBottomColor: Color.primary,
-            borderBottomWidth: 1,
-            marginTop: 5,
-          }}>
+          style={Styles.menuList}>
           {icon}
           <Text
-            style={{
-              alignSelf: 'center',
-              marginHorizontal: 20,
-              fontFamily: Fonts.btnFont,
-            }}>
+            style={Styles.menuText}>
             {name}
           </Text>
         </View>
@@ -48,4 +39,21 @@ const MenuItem = ({name, icon, onPress, navigation}) => {
   );
 };
 
+const Styles = StyleSheet.create({
+  menuList:{
+    display: 'flex',
+    flexDirection: 'row',
+    paddingHorizontal: wp('6%'),
+    paddingVertical: hp('1.3%'),
+    height: hp('7%'),
+    borderBottomColor: Color.primary,
+    borderBottomWidth: 1,
+    marginTop: hp('0.6%'),
+  },
+  menuText:{
+    alignSelf: 'center',
+    marginHorizontal: hp('2.4%'),
+    fontFamily: Fonts.btnFont,
+  }
+})
 export default MenuItem;

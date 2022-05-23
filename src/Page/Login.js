@@ -7,7 +7,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image,
+  StyleSheet,
 } from 'react-native';
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import baseURL from '../assets/common/baseUrl';
 import Button from '../Component/Button';
 import PhoneInput from '../Component/PhoneInput';
@@ -38,41 +40,20 @@ const Login = props => {
         onPress={Keyboard.dismiss}
         style={{backgroundColor: 'red'}}>
         <View
-          style={{
-            paddingVertical: 10,
-            paddingHorizontal: 10,
-            // backgroundColor: 'yellow',
-            display: 'flex',
-            flex: 1,
-            justifyContent: 'space-between',
-          }}>
+          style={Styles.loginView}>
           <View>
             <Image
-              style={{
-                height: 250,
-                width: 250,
-                alignSelf: 'center',
-              }}
+              style={Styles.loginImg}
               source={require('../assets/images/login-amico.png')}
             />
 
-            <View style={{marginVertical: 20}}>
+            <View style={{marginVertical: hp('2%')}}>
               <Text
-                style={{
-                  alignSelf: 'center',
-                  fontSize: 20,
-                  fontWeight: '600',
-                  marginVertical: 5,
-                }}>
+                style={Styles.textStyle}>
                 OTP Verification
               </Text>
               <Text
-                style={{
-                  alignSelf: 'center',
-                  fontWeight: '600',
-                  textAlign: 'center',
-                  marginVertical: 5,
-                }}>
+                style={Styles.secondaryText}>
                 We will send you ONE TIME PASSWORD to validate the phone number.
               </Text>
 
@@ -99,4 +80,31 @@ const Login = props => {
   );
 };
 
+
+const Styles = StyleSheet.create({
+  loginView:{
+    paddingVertical: hp('1%'),
+    paddingHorizontal: wp('3%'),
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  loginImg:{
+    height: hp('32%'),
+    width: wp('65%'),
+    alignSelf: 'center',
+  },
+  textStyle:{
+    alignSelf: 'center',
+    fontSize: hp('2.5%'),
+    fontWeight: '600',
+    marginVertical: hp('0.5%'),
+  },
+  secondaryText:{
+    alignSelf: 'center',
+    fontWeight: '600',
+    textAlign: 'center',
+    marginVertical: hp("0.5%"),
+  }
+})
 export default Login;

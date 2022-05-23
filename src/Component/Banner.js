@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Image, StyleSheet, Dimensions, View, ScrollView} from 'react-native';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
 import Swiper from 'react-native-swiper';
 
 var {width} = Dimensions.get('window');
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   swiper: {
     width: width,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: heightPercentageToDP('1%'),
   },
   imageBanner: {
     height: width / 2,
