@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {Text, View, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -17,13 +17,7 @@ import Header from '../Component/Header';
 const Account = props => {
   return (
     <View
-      style={{
-        // backgroundColor: 'red',
-        display: 'flex',
-        // justifyContent: 'space-between',
-        flex: 1,
-        marginBottom: 40,
-      }}>
+      style={Styles.accountView}>
       <Header
         name="Hey Buddy"
         description="Welcome to my app"
@@ -35,31 +29,11 @@ const Account = props => {
         // noQty="noQty"
       />
       <View
-        style={{
-          backgroundColor: '#F9DDD7',
-          height: hp('35%'),
-          // flex:2 ,
-          justifyContent: 'space-between',
-        }}>
+        style={Styles.bannerView}>
         <View
-          style={{
-            // backgroundColor: 'red',
-            display: 'flex',
-            flexDirection: 'row',
-            // marginVertical: 85,
-            justifyContent: 'center',
-            marginTop: 60,
-          }}>
+          style={Styles.accountImgRow}>
           <Image
-            style={{
-              height: 80,
-              width: 80,
-              alignSelf: 'center',
-              backgroundColor: '#FFF',
-              borderRadius: 20,
-              borderColor: '#FFF',
-              borderWidth: 2,
-            }}
+            style={Styles.accountImage}
             resizeMode="contain"
             source={require('../assets/images/OTP-bro.png')}
           />
@@ -70,27 +44,11 @@ const Account = props => {
           />
         </View>
         <Text
-          style={{
-            alignSelf: 'center',
-            fontSize: 19,
-            fontWeight: '800',
-            marginTop: 10,
-          }}>
+          style={Styles.accountName}>
           faizan khan
         </Text>
         <View
-          style={{
-            marginVertical: 20,
-            backgroundColor: '#FFF',
-            width: wp('90%'),
-            alignSelf: 'center',
-            borderRadius: 5,
-            paddingHorizontal: 10,
-            paddingVertical: 15,
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-          }}>
+          style={Styles.accountAddress}>
           <Text>Wing-B, AG Nagar, MIDC, Kashimira, Mira....</Text>
           <TouchableOpacity
             // onPress={onclick}
@@ -133,4 +91,49 @@ const Account = props => {
   );
 };
 
+const Styles = StyleSheet.create({
+  accountView:{
+    display: 'flex',
+    flex: 1,
+    marginBottom: hp('5%'),
+  },
+  bannerView:{
+    backgroundColor: '#F9DDD7',
+    height: hp('35%'),
+    justifyContent: 'space-between',
+  },
+  accountImgRow:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: hp('7%'),
+  },
+  accountImage:{
+    height: hp('10%'),
+    width: wp('20%'),
+    alignSelf: 'center',
+    backgroundColor: '#FFF',
+    borderRadius: 20,
+    borderColor: '#FFF',
+    borderWidth: 2,
+  },
+  accountName:{
+    alignSelf: 'center',
+    fontSize: hp('2.5%'),
+    fontWeight: '800',
+    marginTop: hp('1.5%'),
+  },
+  accountAddress:{
+    marginVertical: hp('2.5%'),
+    backgroundColor: '#FFF',
+    width: wp('90%'),
+    alignSelf: 'center',
+    borderRadius: 5,
+    paddingHorizontal: wp('3%'),
+    paddingVertical: hp('2%'),
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  }
+})
 export default Account;

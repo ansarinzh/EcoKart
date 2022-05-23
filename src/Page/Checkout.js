@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 import {Color} from '../assets/Color';
 import {Fonts} from '../assets/Fonts';
 import Button from '../Component/Button';
@@ -10,6 +10,10 @@ import {ClearCart} from '../Redux/Action/CartAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import baseUrl from '../assets/common/baseUrl';
 import axios from 'axios';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const Checkout = props => {
   const dispatch = useDispatch();
@@ -63,18 +67,10 @@ const Checkout = props => {
 
   console.log('tokenId', tokenId);
   return (
-    <View
-      style={{
-        padding: 15,
-        //  backgroundColor: 'red',
-        display: 'flex',
-        justifyContent: 'space-between',
-        flex: 1,
-      }}>
-      <View style={{height: 375}}>
-        <View style={{marginVertical: 10}}>
-          <Text style={{marginVertical: 5}}>Order items</Text>
-
+    <View style={Style.checkOutCard}>
+      <View style={{height: hp('48%')}}>
+        <View style={{marginVertical: hp('1.5%')}}>
+          <Text style={{marginVertical: hp('1%')}}>Order items</Text>
           <FlatList
             data={orderItems}
             showsVerticalScrollIndicator={false}
@@ -83,15 +79,10 @@ const Checkout = props => {
         </View>
       </View>
       <View style={{}}>
-        <View style={{marginVertical: 12}}>
-          <Text style={{marginVertical: 10}}>Shipping To</Text>
+        <View style={{marginVertical: wp('3%')}}>
+          <Text style={{marginVertical: wp('2.5%')}}>Shipping To</Text>
           <View
-            style={{
-              padding: 10,
-              borderColor: Color.primary,
-              borderWidth: 1,
-              borderRadius: 20,
-            }}>
+            style={Style.checkOutBilling}>
             <Text style={{fontFamily: Fonts.headingFont}}>
               Address:{''}
               {props?.route?.params?.billing?.name ?? 'no name'}
@@ -108,37 +99,17 @@ const Checkout = props => {
             </Text>
           </View>
         </View>
-        <Text style={{marginVertical: 5}}>Paymet method</Text>
+        <Text style={{marginVertical: hp('1%')}}>Paymet method</Text>
         <View
-          style={{
-            marginVertical: 5,
-            // backgroundColor: 'red',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
+          style={Style.checkOutPayment}>
           <View
-            style={{
-              padding: 10,
-              borderColor: Color.primary,
-              borderWidth: 1,
-              borderRadius: 10,
-              alignSelf: 'flex-start',
-              marginBottom: 10,
-            }}>
+            style={Style.cashOnDel}>
             <Text style={{fontFamily: Fonts.headingFont}}>
               Cash on delivery
             </Text>
           </View>
           <View
-            style={{
-              padding: 10,
-              borderColor: Color.primary,
-              borderWidth: 1,
-              borderRadius: 10,
-              alignSelf: 'flex-start',
-              marginBottom: 10,
-            }}>
+            style={Style.totalAmount}>
             <Text style={{fontFamily: Fonts.headingFont}}>
               Total Amount: {Number(total).toFixed(0)}
             </Text>
@@ -149,5 +120,42 @@ const Checkout = props => {
     </View>
   );
 };
+
+const Style = StyleSheet.create({
+  checkOutCard: {
+    padding: wp('4.5%'),
+    display: 'flex',
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+  checkOutBilling:{
+    padding: wp('3%'),
+    borderColor: Color.primary,
+    borderWidth: 1,
+    borderRadius: 20,
+  },
+  checkOutPayment:{
+    marginVertical: hp('1%'),
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  cashOnDel:{
+    padding: wp('2.8%'),
+    borderColor: Color.primary,
+    borderWidth: 1,
+    borderRadius: 10,
+    alignSelf: 'flex-start',
+    marginBottom: wp("2.8%"),
+  },
+  totalAmount:{
+    padding: wp('2.8%'),
+    borderColor: Color.primary,
+    borderWidth: 1,
+    borderRadius: 10,
+    alignSelf: 'flex-start',
+    marginBottom: wp("2.8%"),
+  }
+});
 
 export default Checkout;

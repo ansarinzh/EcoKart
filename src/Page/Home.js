@@ -8,6 +8,7 @@ import {
   FlatList,
   RefreshControl,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import {Color} from '../assets/Color';
 import Banner from '../Component/Banner';
@@ -155,13 +156,7 @@ const Home = props => {
 
               <View style={{padding: 10}}>
                 <Text
-                  style={{
-                    fontSize: 20,
-                    fontWeight: '500',
-                    marginBottom: 15,
-                    marginHorizontal: 5,
-                    fontFamily: Fonts.headingFont,
-                  }}>
+                  style={Styles.catergoryText}>
                   Category
                 </Text>
                 <Category
@@ -173,11 +168,11 @@ const Home = props => {
                 />
               </View>
 
-              <View style={{padding: 10}}>
-                <Text style={{fontSize: 20, fontFamily: Fonts.headingFont}}>
+              <View style={{padding: wp('2.5%')}}>
+                <Text style={{fontSize: hp('2.5%'), fontFamily: Fonts.headingFont}}>
                   Popular
                 </Text>
-                <View style={{marginBottom: 150}}>
+                <View style={{ marginBottom: hp('5%')}}>
                   {productsCtg.length > 0 ? (
                     <FlatList
                       data={productsCtg}
@@ -190,12 +185,7 @@ const Home = props => {
                     />
                   ) : (
                     <View
-                      style={{
-                        height: 200,
-                        alignContent: 'center',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}>
+                      style={Styles.noProductView}>
                       <Text>No products found</Text>
                     </View>
                   )}
@@ -208,7 +198,7 @@ const Home = props => {
         <View
           style={{
             backgroundColor: '#f2f2f2',
-            marginTop: 150,
+            marginTop: hp('15%'),
             justifyContent: 'center',
             alignItems: 'center',
           }}>
@@ -218,5 +208,21 @@ const Home = props => {
     </View>
   );
 };
+
+const Styles = StyleSheet.create({
+  catergoryText:{
+    fontSize: hp('2.5%'),
+    fontWeight: '500',
+    marginBottom: hp('2%'),
+    marginHorizontal: wp('1%'),
+    fontFamily: Fonts.headingFont,
+  },
+  noProductView:{
+    height: hp('25%'),
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+})
 
 export default Home;

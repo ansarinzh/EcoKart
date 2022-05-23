@@ -64,19 +64,13 @@ const ProductCard = ({data, navigation}) => {
               ? data.name.substring(0, 15 - 3) + '.....'
               : data.name}
           </Text>
-          <Text style={{width: 130, fontFamily: Fonts.primaryFont}}>
+          <Text style={{width: wp('35%'), fontFamily: Fonts.primaryFont}}>
             {data.description.length > 15
               ? data.description.substring(0, 15 - 3) + '.....'
               : data.description}
           </Text>
           <View
-            style={{
-              // backgroundColor: 'red',
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              // marginVertical:9
-            }}>
+            style={styles.productMRPPrice}>
             <Text
               style={{
                 textDecorationLine: 'line-through',
@@ -90,12 +84,7 @@ const ProductCard = ({data, navigation}) => {
           </View>
 
           <Text
-            style={{
-              fontSize: 15,
-              alignSelf: 'flex-start',
-              color: Color.secondary,
-              fontFamily: Fonts.primaryFont,
-            }}>
+            style={styles.discountedPrice}>
             {data.price} / {data.unit}
           </Text>
         </View>
@@ -103,11 +92,7 @@ const ProductCard = ({data, navigation}) => {
 
       {data.countInStock > 0 ? (
         <View
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginRight: 15,
-          }}>
+          style={styles.qntyView}>
           {quantity >= 1 ? (
             // qty.carts.filter(item => item._id === data._id).length >= 1
             <Counter
@@ -127,7 +112,7 @@ const ProductCard = ({data, navigation}) => {
       ) : (
         <Text
           style={{
-            marginTop: 20,
+            marginTop: hp('2'),
             color: 'red',
             width: 100,
           }}>
@@ -146,14 +131,12 @@ const styles = StyleSheet.create({
     height: hp('16%'),
     display: 'flex',
     flexDirection: 'row',
-    margin: 10,
+    margin: wp("3%"),
     elevation: 5,
-    paddingVertical: 10,
+    paddingVertical: hp('1.2%'),
     borderRadius: 20,
     borderColor: Color.primary,
-    // borderWidth: 0.5,
     justifyContent: 'space-between',
-    // marginBottom
   },
   imgCard: {
     marginHorizontal: wp('2%'),
@@ -164,11 +147,25 @@ const styles = StyleSheet.create({
   },
   heading: {
     display: 'flex',
-    // fontSize: 18,
-    marginVertical: 5,
-    // backgroundColor: 'red',
+    marginVertical: hp('0.5%'),
     alignSelf: 'flex-start',
     fontFamily: Fonts.subHeadingFont,
   },
+  qntyView:{
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginRight: wp('4%'),
+  },
+  productMRPPrice:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  discountedPrice:{
+    fontSize: hp('2%'),
+    alignSelf: 'flex-start',
+    color: Color.secondary,
+    fontFamily: Fonts.primaryFont,
+  }
 });
 export default ProductCard;

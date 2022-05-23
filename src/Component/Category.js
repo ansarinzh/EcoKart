@@ -23,38 +23,19 @@ const Category = props => {
       showsHorizontalScrollIndicator={false}>
       <View style={{display: 'flex', flexDirection: 'row'}}>
         <TouchableOpacity
-          style={{
-            display: 'flex',
-            backgroundColor: 'gray',
-            // props.active == -1 ? Color.primary : Color.secondary,
-            flexDirection: 'row',
-            alignItems: 'center',
-            borderColor: Color.primary,
-            // borderWidth: 1,
-            justifyContent: 'center',
-            borderRadius: 40,
-            alignSelf: 'flex-start',
-            marginHorizontal: 5,
-            paddingHorizontal: 3,
-            paddingVertical: 3,
-          }}
+          style={styles.btnCategory}
           onPress={() => {
             props.categoryFilter('all'), props.setActive(-1);
           }}>
           <Image
-            style={{
-              height: hp('5%'),
-              width: wp('10%'),
-              borderRadius: 50,
-              // margin: 5,
-            }}
+            style={styles.categoryImg}
             resizeMode="contain"
             source={{
               uri: 'https://picsum.photos/id/237/536/354',
             }}
           />
 
-          <Text style={{marginHorizontal: 4, color: Color.primaryText}}>
+          <Text style={{marginHorizontal: wp('1%'), color: Color.primaryText}}>
             All
           </Text>
         </TouchableOpacity>
@@ -67,30 +48,17 @@ const Category = props => {
                   props.setActive(props.categories.indexOf(item));
               }}
               // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                display: 'flex',
-                backgroundColor:
-                  props.active == props.categories.indexOf(item)
-                    ? Color.secondary
-                    : 'gray',
-                flexDirection: 'row',
-                alignItems: 'center',
-                borderColor: Color.primary,
-                // borderWidth: 1,
-                justifyContent: 'center',
-                borderRadius: 40,
-                alignSelf: 'flex-start',
-                marginHorizontal: 5,
-                paddingHorizontal: 3,
-                paddingVertical: 3,
-              }}>
+              style={[
+                styles.btnCategory,
+                {
+                  backgroundColor:
+                    props.active == props.categories.indexOf(item)
+                      ? Color.secondary
+                      : 'gray',
+                },
+              ]}>
               <Image
-                style={{
-                  height: hp('5%'),
-                  width: wp('10%'),
-                  borderRadius: 50,
-                  // margin: 5,
-                }}
+                style={styles.categoryImg}
                 resizeMode="contain"
                 source={{
                   uri: item
@@ -120,6 +88,24 @@ const styles = StyleSheet.create({
   inactive: {
     backgroundColor: 'blue',
   },
+  btnCategory: {
+    display: 'flex',
+    backgroundColor: 'gray',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: Color.primary,
+    justifyContent: 'center',
+    borderRadius: 40,
+    alignSelf: 'flex-start',
+    marginHorizontal: wp('1.8%'),
+    paddingHorizontal: wp('1%'),
+    paddingVertical: wp('0.7%'),
+  },
+  categoryImg:{
+    height: hp('5%'),
+    width: wp('10%'),
+    borderRadius: 50,
+  }
 });
 
 export default Category;
